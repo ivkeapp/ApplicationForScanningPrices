@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/pocetna" android:title="Početna strana"/>
+    <item android:id="@+id/unos" android:title="Unesite proizvode"/>
+    <item android:id="@+id/download" android:title="Preuzmite prethodno unete cene"/>
+    <item android:id="@+id/prijava" android:title="Prijavite se"/>
+    <item android:id="@+id/izlaz" android:title="Izlaz"/>
+
+</menu>

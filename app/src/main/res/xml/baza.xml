@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Prodavnice>
+	<Prodavnica id ="1">
+		<sifra_grada>001</sifra_grada>
+		<sifra_opstine>10000</sifra_opstine>
+		<maticni_broj>01</maticni_broj>
+		<naziv_prodavnice>Maxi</naziv_prodavnice>
+		<tip_prodavnice>1</tip_prodavnice>
+		<tip_vlasnistva>7</tip_vlasnistva>
+		<adresa>Jurija Gagarina 263</adresa>
+		<telefon>063617833</telefon>
+		<ime_prezime_osobe_za_cene>Vladan Markovic</ime_prezime_osobe_za_cene>
+		<sifra_mesta_snimanja_za_svaki_proizvod>4, 5, 6</sifra_mesta_snimanja_za_svaki_proizvod>
+		<napomene>blank</napomene>
+		<zamena_prodavnice>blank</zamena_prodavnice>
+		<sifra_snimatelja>26648724937</sifra_snimatelja>
+	</Prodavnica>
+
+	<Prodavnica id ="2">
+		<sifra_grada>002</sifra_grada>
+		<sifra_opstine>20000</sifra_opstine>
+		<maticni_broj>02</maticni_broj>
+		<naziv_prodavnice>Sunce</naziv_prodavnice>
+		<tip_prodavnice>1</tip_prodavnice>
+		<tip_vlasnistva>6</tip_vlasnistva>
+		<adresa>Milana Rakica 5</adresa>
+		<telefon>0642663832</telefon>
+		<ime_prezime_osobe_za_cene>Janko Veselinovic</ime_prezime_osobe_za_cene>
+		<sifra_mesta_snimanja_za_svaki_proizvod>4, 5, 6</sifra_mesta_snimanja_za_svaki_proizvod>
+		<napomene>blank</napomene>
+		<zamena_prodavnice>blank</zamena_prodavnice>
+		<sifra_snimatelja>76648724937</sifra_snimatelja>
+	</Prodavnica>
+
+	<Prodavnica id ="3">
+		<sifra_grada>003</sifra_grada>
+		<sifra_opstine>30000</sifra_opstine>
+		<maticni_broj>03</maticni_broj>
+		<naziv_prodavnice>Aman</naziv_prodavnice>
+		<tip_prodavnice>2</tip_prodavnice>
+		<tip_vlasnistva>7</tip_vlasnistva>
+		<adresa>Dimitrija Tucovica 2</adresa>
+		<telefon>0642374458</telefon>
+		<ime_prezime_osobe_za_cene>Mirko Jankovic</ime_prezime_osobe_za_cene>
+		<sifra_mesta_snimanja_za_svaki_proizvod>4, 5, 6</sifra_mesta_snimanja_za_svaki_proizvod>
+		<napomene>blank</napomene>
+		<zamena_prodavnice>blank</zamena_prodavnice>
+		<sifra_snimatelja>46648724937</sifra_snimatelja>
+	</Prodavnica>
+
+	<Prodavnica id ="4">
+		<sifra_grada>001</sifra_grada>
+		<sifra_opstine>40000</sifra_opstine>
+		<maticni_broj>04</maticni_broj>
+		<naziv_prodavnice>Lilly</naziv_prodavnice>
+		<tip_prodavnice>4</tip_prodavnice>
+		<tip_vlasnistva>7</tip_vlasnistva>
+		<adresa>Gandijeva 155</adresa>
+		<telefon>0113669122</telefon>
+		<ime_prezime_osobe_za_cene>Jovan Jankulovski</ime_prezime_osobe_za_cene>
+		<sifra_mesta_snimanja_za_svaki_proizvod>4, 5, 6</sifra_mesta_snimanja_za_svaki_proizvod>
+		<napomene>blank</napomene>
+		<zamena_prodavnice>blank</zamena_prodavnice>
+		<sifra_snimatelja>86648724937</sifra_snimatelja>
+	</Prodavnica>
+	<Prodavnica id ="5">
+		<sifra_grada>007</sifra_grada>
+		<sifra_opstine>50000</sifra_opstine>
+		<maticni_broj>05</maticni_broj>
+		<naziv_prodavnice>ShopnGo</naziv_prodavnice>
+		<tip_prodavnice>4</tip_prodavnice>
+		<tip_vlasnistva>3</tip_vlasnistva>
+		<adresa>Poenkarova 12</adresa>
+		<telefon>0114461946</telefon>
+		<ime_prezime_osobe_za_cene>Nenad Jovanovic</ime_prezime_osobe_za_cene>
+		<sifra_mesta_snimanja_za_svaki_proizvod>7, 8, 9</sifra_mesta_snimanja_za_svaki_proizvod>
+		<napomene>blank</napomene>
+		<zamena_prodavnice>blank</zamena_prodavnice>
+		<sifra_snimatelja>86611224937</sifra_snimatelja>
+	</Prodavnica>
+</Prodavnice>

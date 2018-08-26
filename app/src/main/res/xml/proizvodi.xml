@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Proizvodi>
+	<Proizvod id="1">
+		<ime_proizvoda>Mleko</ime_proizvoda>
+		<vrsta_proizvoda>mlecni proizvod</vrsta_proizvoda>
+		<merna_jedinica>litar</merna_jedinica>
+		<Prodavnice>
+			<Prodavnica>1</Prodavnica>
+			<Prodavnica>3</Prodavnica>
+			<Prodavnica>4</Prodavnica>
+		</Prodavnice>
+	</Proizvod>
+	<Proizvod id="2">
+		<ime_proizvoda>Hleb</ime_proizvoda>
+		<vrsta_proizvoda>Pekarski proizvod</vrsta_proizvoda>
+		<merna_jedinica>gram</merna_jedinica>
+		<Prodavnice>
+			<Prodavnica>1</Prodavnica>
+			<Prodavnica>2</Prodavnica>
+			<Prodavnica>3</Prodavnica>
+		</Prodavnice>
+	</Proizvod>
+	<Proizvod id="3">
+		<ime_proizvoda>Suvi vrat</ime_proizvoda>
+		<vrsta_proizvoda>Mesna preradjevina</vrsta_proizvoda>
+		<merna_jedinica>gram</merna_jedinica>
+		<Prodavnice>
+			<Prodavnica>2</Prodavnica>
+			<Prodavnica>3</Prodavnica>
+			<Prodavnica>4</Prodavnica>
+		</Prodavnice>
+	</Proizvod>
+	<Proizvod id="4">
+		<ime_proizvoda>Pecenica</ime_proizvoda>
+		<vrsta_proizvoda>Mesna preradjevina</vrsta_proizvoda>
+		<merna_jedinica>100 grama</merna_jedinica>
+		<Prodavnice>
+			<Prodavnica>1</Prodavnica>
+			<Prodavnica>2</Prodavnica>
+			<Prodavnica>4</Prodavnica>
+		</Prodavnice>
+	</Proizvod>
+	<Proizvod id="5">
+		<ime_proizvoda>Persil prašak za veš</ime_proizvoda>
+		<vrsta_proizvoda>Kućna hemija</vrsta_proizvoda>
+		<merna_jedinica>kilogram</merna_jedinica>
+		<Prodavnice>
+			<Prodavnica>1</Prodavnica>
+			<Prodavnica>5</Prodavnica>
+		</Prodavnice>
+	</Proizvod>
+	<Proizvod id="6">
+		<ime_proizvoda>Topola čajna salama</ime_proizvoda>
+		<vrsta_proizvoda>Mesna preradjevina</vrsta_proizvoda>
+		<merna_jedinica>100 grama</merna_jedinica>
+		<Prodavnice>
+			<Prodavnica>1</Prodavnica>
+			<Prodavnica>3</Prodavnica>
+			<Prodavnica>4</Prodavnica>
+			<Prodavnica>5</Prodavnica>
+		</Prodavnice>
+	</Proizvod>
+	<Proizvod id="7">
+		<ime_proizvoda>Dove sapun za ruke</ime_proizvoda>
+		<vrsta_proizvoda>Kućna hemija</vrsta_proizvoda>
+		<merna_jedinica>Komadno</merna_jedinica>
+		<Prodavnice>
+			<Prodavnica>3</Prodavnica>
+			<Prodavnica>5</Prodavnica>
+		</Prodavnice>
+	</Proizvod>
+	<Proizvod id="8">
+		<ime_proizvoda>Ajax sredstvo za čišćenje pločica</ime_proizvoda>
+		<vrsta_proizvoda>Kućna hemija</vrsta_proizvoda>
+		<merna_jedinica>mililitar</merna_jedinica>
+		<Prodavnice>
+			<Prodavnica>1</Prodavnica>
+			<Prodavnica>2</Prodavnica>
+			<Prodavnica>3</Prodavnica>
+			<Prodavnica>4</Prodavnica>
+			<Prodavnica>5</Prodavnica>
+		</Prodavnice>
+	</Proizvod>
+	<Proizvod id="9">
+		<ime_proizvoda>Patelina pašteta</ime_proizvoda>
+		<vrsta_proizvoda>Mesna prerađevina</vrsta_proizvoda>
+		<merna_jedinica>gram</merna_jedinica>
+		<Prodavnice>
+			<Prodavnica>1</Prodavnica>
+			<Prodavnica>2</Prodavnica>
+			<Prodavnica>3</Prodavnica>
+		</Prodavnice>
+	</Proizvod>
+    <Proizvod id="10">
+        <ime_proizvoda>Durum testenina za kuvanje</ime_proizvoda>
+        <vrsta_proizvoda>Testo</vrsta_proizvoda>
+        <merna_jedinica>gram</merna_jedinica>
+        <Prodavnice>
+            <Prodavnica>3</Prodavnica>
+            <Prodavnica>4</Prodavnica>
+            <Prodavnica>5</Prodavnica>
+        </Prodavnice>
+    </Proizvod>
+</Proizvodi>

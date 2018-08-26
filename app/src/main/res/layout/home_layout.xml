@@ -56,14 +56,14 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="70dp"
                         android:layout_marginTop="25dp"
-                        android:background="@color/white">
+                        android:background="@drawable/round_edge_shadow">
 
                         <TextView
                             android:id="@+id/txt1"
                             android:layout_width="80dp"
-                            android:layout_height="35dp"
+                            android:layout_height="45dp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="15dp"
                             android:layout_marginStart="15dp"
@@ -74,13 +74,15 @@
                         <TextView
                             android:id="@+id/txt_prodavnica3"
                             android:layout_width="158dp"
-                            android:layout_height="35dp"
+                            android:layout_height="45dp"
                             android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="1dp"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
-                            android:layout_marginBottom="1dp"
                             android:gravity="center_vertical"
-                            android:textSize="20sp" />
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
                         <ImageButton
                             android:id="@+id/button_edit1"
@@ -96,9 +98,9 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="70dp"
                         android:layout_marginTop="15dp"
-                        android:background="@color/white">
+                        android:background="@drawable/round_edge_shadow">
 
                         <TextView
                             android:id="@+id/txt3"
@@ -113,13 +115,15 @@
                         <TextView
                             android:id="@+id/txt_prodavnica4"
                             android:layout_width="158dp"
-                            android:layout_height="35dp"
+                            android:layout_height="45dp"
                             android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="1dp"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
-                            android:layout_marginBottom="1dp"
                             android:gravity="center_vertical"
-                            android:textSize="20sp" />
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
                         <ImageButton
                             android:id="@+id/button_edit2"
@@ -134,9 +138,9 @@
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="70dp"
                         android:layout_marginTop="15dp"
-                        android:background="@color/white">
+                        android:background="@drawable/round_edge_shadow">
 
                         <TextView
                             android:id="@+id/txt5"
@@ -151,13 +155,15 @@
                         <TextView
                             android:id="@+id/txt_prodavnica5"
                             android:layout_width="158dp"
-                            android:layout_height="35dp"
+                            android:layout_height="45dp"
                             android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="1dp"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
-                            android:layout_marginBottom="1dp"
                             android:gravity="center_vertical"
-                            android:textSize="20sp" />
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
                         <ImageButton
                             android:id="@+id/button_edit3"
@@ -173,9 +179,9 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="70dp"
                         android:layout_marginTop="15dp"
-                        android:background="@color/white">
+                        android:background="@drawable/round_edge_shadow">
 
                         <TextView
                             android:id="@+id/txt7"
@@ -190,13 +196,15 @@
                         <TextView
                             android:id="@+id/txt_prodavnica6"
                             android:layout_width="158dp"
-                            android:layout_height="35dp"
+                            android:layout_height="45dp"
                             android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="1dp"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
-                            android:layout_marginBottom="1dp"
                             android:gravity="center_vertical"
-                            android:textSize="20sp" />
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
                         <ImageButton
                             android:id="@+id/button_edit4"
@@ -211,9 +219,9 @@
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="70dp"
                         android:layout_marginTop="15dp"
-                        android:background="@color/white">
+                        android:background="@drawable/round_edge_shadow">
 
                         <TextView
                             android:id="@+id/txt9"
@@ -228,13 +236,15 @@
                         <TextView
                             android:id="@+id/txt_prodavnica7"
                             android:layout_width="158dp"
-                            android:layout_height="35dp"
+                            android:layout_height="45dp"
                             android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="1dp"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
-                            android:layout_marginBottom="1dp"
                             android:gravity="center_vertical"
-                            android:textSize="20sp" />
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
                         <ImageButton
                             android:id="@+id/button_edit5"
@@ -250,9 +260,9 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="70dp"
                         android:layout_marginTop="15dp"
-                        android:background="@color/white">
+                        android:background="@drawable/round_edge_shadow">
 
                         <TextView
                             android:id="@+id/txt11"
@@ -267,13 +277,15 @@
                         <TextView
                             android:id="@+id/txt12"
                             android:layout_width="158dp"
-                            android:layout_height="35dp"
+                            android:layout_height="45dp"
                             android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="1dp"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
-                            android:layout_marginBottom="1dp"
                             android:gravity="center_vertical"
-                            android:textSize="20sp" />
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
                         <ImageButton
                             android:id="@+id/button_edit6"

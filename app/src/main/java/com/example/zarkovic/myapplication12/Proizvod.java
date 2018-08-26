@@ -3,7 +3,7 @@ package com.example.zarkovic.myapplication12;
 import java.util.ArrayList;
 
 public class Proizvod {
-
+String added;
     String id, ime_proizvoda, vrsta_proizvoda, merna_jedinica;
     ArrayList<String> lista_prodavnica;
 

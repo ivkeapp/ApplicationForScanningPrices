@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">My Application12</string>
+    <string name="app_name">Dobro došli</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="dobrodoslica">Dobro došli</string>
+    <string name="prijava">Prijavite se</string>
+    <string name="korisnicko_ime">Korisničko ime</string>
+    <string name="sifra">Šifra</string>
+    <string name="offline_unos">Unesite proizvode bez konekcije</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/pocetna" android:title="Početna strana"/>
-    <item android:id="@+id/unos" android:title="Unesite proizvode"/>
-    <item android:id="@+id/download" android:title="Preuzmite prethodno unete cene"/>
-    <item android:id="@+id/prijava" android:title="Prijavite se"/>
-    <item android:id="@+id/izlaz" android:title="Izlaz"/>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIm="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/pocetna" android:title="Početna strana" android:icon="@drawable/ic_home_black"/>
+        <item android:id="@+id/unos" android:title="Unesite proizvode" android:icon="@drawable/ic_file_upload_black"/>
+        <item android:id="@+id/download" android:title="Preuzmite prethodno unete cene" android:icon="@drawable/ic_file_download_black"/>
+        <item android:id="@+id/prijava" android:title="Prijavite se" android:icon="@drawable/ic_log_in"/>
+        <item android:id="@+id/izlaz" android:title="Izlaz" android:icon="@drawable/ic_close_black"/>
+    </group>
 
 </menu>

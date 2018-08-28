@@ -65,7 +65,6 @@ public class ParskingProizvoda {
                     break;
                 case XmlPullParser.START_TAG:
                     name = parser.getName();
-                    //System.out.println(name);
                     if(name.equals("Proizvod")){
                         proizvod = new Proizvod();
                         proizvod.setId(parser.getAttributeValue(null, "id"));
@@ -81,7 +80,6 @@ public class ParskingProizvoda {
                         }else if(name.equalsIgnoreCase("Prodavnice")){
                             //poziv metode za parsiranje liste prodavnica u kojima se prodaju dati proizvodi
                             proizvod.setLista_prodavnica(parsing(parser));
-                            //Log.i("dodavanje2", parser.getName()+" "+eventType);
                         }
                     }
                     break;
@@ -89,7 +87,6 @@ public class ParskingProizvoda {
                     name = parser.getName();
                     if(name.equalsIgnoreCase("proizvod")&& proizvod !=null){
                         proizvodLista.add(proizvod);
-                        //Log.i("dodavanje", name+" "+eventType);
                     }
             }
             eventType = parser.next();
@@ -100,16 +97,13 @@ public class ParskingProizvoda {
     private ArrayList<String> parsing (XmlPullParser parser) throws XmlPullParserException, IOException {
         //metoda za parsiranje liste prodavnica u kojima se prodaju dati proizvodi
 
-        //Log.i("parser2", parser.getName()+" "+parser.getEventType());
         String print = null;
 
         int eventType = parser.getEventType();
         String name = "";// instanciranje na prazan String da bi usao u while petlju
-        //Log.i("parser3", name+" "+eventType);
         ArrayList<String> lista = new ArrayList<String>();
         while(eventType != XmlPullParser.END_TAG && !name.equalsIgnoreCase("prodavnice")){
             //eventType je pri ulasku u petlju XmlPullParser.start_tag, dok je getName() u prvoj iteraciji "prodavnice"
-            //Log.i("parser4", eventType+" "+name);
             switch (eventType){
                 case XmlPullParser.START_TAG:
                     name = parser.getName();
@@ -122,7 +116,6 @@ public class ParskingProizvoda {
             }eventType = parser.next();
 
         }
-        //Log.i("kraj unutrasnje petlje", name+" "+eventType);
         return lista;
     }
 }

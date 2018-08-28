@@ -52,148 +52,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drwLayout;
     private ActionBarDrawerToggle toggle;
 
-public void updateXML (String element, String id, String newValue){
-
-    try {
-
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        FileInputStream fis = openFileInput("prodavnice.xml");
-        Document doc = builder.parse(fis);
-
-        Node prodavnice = doc.getFirstChild();
-
-        NodeList nodeLista = prodavnice.getChildNodes();
-        for(int i = 0; i<nodeLista.getLength();i++){
-            Node prodavnica = doc.getElementsByTagName("Prodavnica").item(i);
-            NodeList nodList = prodavnica.getChildNodes();
-            NamedNodeMap attr = prodavnica.getAttributes();
-
-            Node nodeAttr = attr.getNamedItem("id");
-            String s = nodeAttr.getNodeValue();
-            if(s.equalsIgnoreCase(id)){
-            for(int j = 0; j<nodList.getLength();j++){
-                Node n = nodList.item(j);
-                if(n.getNodeName().equalsIgnoreCase(element)){
-                    Element e = (Element) n;
-                    e.setTextContent(newValue);
-                }
-                Log.i("nodet", n.getNodeName()+" - "+n.getTextContent());
-            }
-            }
-            //doc.getDocumentElement().normalize();
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
-            //System.out.println("-----------Modified File-----------");
-            StreamResult consoleResult = new StreamResult(new File(getFilesDir() + "/prodavnice.xml"));
-            transformer.setOutputProperty(OutputKeys.INDENT, "no");
-            transformer.transform(source, consoleResult);
-
-//            Node node = nodeLista.item(i);
-//            Log.i("nodep", node.getNodeName());
-        }
-
-
-
-    } catch (ParserConfigurationException e) {
-        e.printStackTrace();
-    } catch (FileNotFoundException e) {
-        e.printStackTrace();
-    } catch (SAXException e) {
-        e.printStackTrace();
-    } catch (IOException e) {
-        e.printStackTrace();
-    } catch (TransformerConfigurationException e) {
-        e.printStackTrace();
-        Log.i("eksepsn","1");
-    } catch (TransformerException e) {
-        e.printStackTrace();
-        Log.i("eksepsn","2");
-    }
-
-}
-    public void ParseXML (){
-//        try {
-//
-//            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-//            DocumentBuilder builder = factory.newDocumentBuilder();
-//            FileInputStream fis = openFileInput("prodavnice.xml");
-//            Document doc = builder.parse(fis);
-//
-//            Node prodavnice = doc.getFirstChild();
-//
-//            NodeList nodeLista = prodavnice.getChildNodes();
-//            for(int i = 0; i<nodeLista.getLength();i++){
-//                Node prodavnica = doc.getElementsByTagName("Prodavnica").item(i);
-//                NodeList nodList = prodavnica.getChildNodes();
-//                for(int j = 0; j<nodList.getLength();j++){
-//                    Node n = nodList.item(j);
-//
-//                    Log.i("nodes", n.getNodeName()+" - "+n.getTextContent());
-//                }
-//                Node node = nodeLista.item(i);
-//                Log.i("nodep", node.getNodeName());
-//            }
-//
-//            Node prodavnica = doc.getElementsByTagName("Prodavnica").item(0);
-//            NamedNodeMap attr = prodavnica.getAttributes();
-//
-//            Node nodeAttr = attr.getNamedItem("id");
-//            String s = nodeAttr.getNodeValue();
-//            Log.i("nodep", s+" ");
-//
-//        } catch (ParserConfigurationException e) {
-//            e.printStackTrace();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (SAXException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-        try {
-            XmlPullParserFactory xppf = XmlPullParserFactory.newInstance();
-            xppf.setNamespaceAware(true);
-            XmlPullParser parser = xppf.newPullParser();
-            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-            //AssetManager manager = MainActivity.this.getAssets();
-            //File prodavniceFile = new File(getFilesDir(), "prodavnice.xml");
-            FileInputStream fis = openFileInput("prodavnice.xml");
-
-            parser.setInput(fis, null);
-            parser.nextTag();
-            int eventType = parser.getEventType();
-            while(eventType != XmlPullParser.END_DOCUMENT) {
-
-
-                if(eventType==XmlPullParser.START_TAG){
-                    String name=parser.getName();
-                    if(name.equalsIgnoreCase("sifra_opstine")){
-                        String s = parser.nextText();
-                        Log.i("Zvake", " "+s);
-                    }else if(name.equalsIgnoreCase("naziv_prodavnice")){
-                        String s = parser.nextText();
-                        Log.i("Zvake", " "+s);
-                    }
-                }
-//                Log.i("Zvake", " "+name);
-//                Log.i("Zvake", " "+parser.getText());
-                eventType=parser.next();
-            }
-            //parseXML(parser);
-
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public boolean fileExist(Context c, String fname){
         String path = c.getFilesDir() + "/" + fname;
         File file = new File(path);
@@ -208,28 +66,23 @@ public void updateXML (String element, String id, String newValue){
 
         boolean jeste = fileExist(this,"prodavnice.xml");
         if(jeste){
-            Log.i("postoji","da");
+            Log.i("postoji baza prodavnica","da");
         }else{
             CreateBaseXML cbxml = new CreateBaseXML();
             cbxml.createXML(this);
             //createXML();
-            Log.i("postoji","ne");
+            Log.i("postoji baza prodavnica","ne");
         }
 
         jeste = fileExist(this,"proizvodi.xml");
         if(jeste){
-            Log.i("postoji2","da");
+            Log.i("postoji baza proizvoda","da");
         }else{
             CreateBaseXMLProizvodi cbxmlp = new CreateBaseXMLProizvodi();
             cbxmlp.createXMLP(this);
-            //createXML();
-            Log.i("postoji2","ne");
+            Log.i("postoji baza proizvoda","ne");
         }
 
-//        UpdateProdavnice up = new UpdateProdavnice();
-//        up.updateXML(this,"sifra_opstine","2","13000");
-        ParseXML();
-        //updateXML("sifra_opstine","2","67000");
         final NavigationView nView = findViewById(R.id.nav_view);
         nView.setNavigationItemSelectedListener(this);
         drwLayout = (DrawerLayout) findViewById(R.id.drawer);
@@ -237,8 +90,6 @@ public void updateXML (String element, String id, String newValue){
         drwLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new home_fragment()).commit();

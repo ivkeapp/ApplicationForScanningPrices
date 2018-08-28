@@ -54,20 +54,17 @@ public class UpdateProdavnice {
                             Element e = (Element) n;
                             e.setTextContent(newValue);
                         }
-                        Log.i("nodet", n.getNodeName()+" - "+n.getTextContent());
+                        //Log.i("nodet", n.getNodeName()+" - "+n.getTextContent());
                     }
                 }
-                //doc.getDocumentElement().normalize();
+
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
                 DOMSource source = new DOMSource(doc);
-                //System.out.println("-----------Modified File-----------");
                 StreamResult consoleResult = new StreamResult(new File(c.getFilesDir() + "/prodavnice.xml"));
                 transformer.setOutputProperty(OutputKeys.INDENT, "no");
                 transformer.transform(source, consoleResult);
 
-//            Node node = nodeLista.item(i);
-//            Log.i("nodep", node.getNodeName());
             }
 
 
@@ -82,10 +79,8 @@ public class UpdateProdavnice {
             e.printStackTrace();
         } catch (TransformerConfigurationException e) {
             e.printStackTrace();
-            Log.i("eksepsn","1");
         } catch (TransformerException e) {
             e.printStackTrace();
-            Log.i("eksepsn","2");
         }
 
     }

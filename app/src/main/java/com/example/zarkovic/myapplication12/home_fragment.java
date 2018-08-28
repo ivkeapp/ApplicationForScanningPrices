@@ -62,6 +62,13 @@ public class home_fragment extends Fragment {
     TextView txt_matbr = null;
     TextView txt_opstina = null;
     TextView txt_osoba_za_cene = null;
+    TextView txt_sifra_grada = null;
+    TextView txt_tip_prodavnice = null;
+    TextView txt_tip_vlasnistva = null;
+    TextView txt_sifra_mesta_snimanja_za_svaki_proizvod = null;
+    TextView txt_napomene = null;
+    TextView txt_zamena_prodavnice = null;
+    TextView txt_sifra_snimatelja = null;
 
     private void settingArrayAdapter(AutoCompleteTextView s){
 
@@ -158,6 +165,13 @@ public class home_fragment extends Fragment {
         txt_matbr = (TextView) view.findViewById(R.id.txt_prodavnica7);
         txt_opstina = (TextView) view.findViewById(R.id.txt_prodavnica6);
         txt_osoba_za_cene = (TextView) view.findViewById(R.id.txt12);
+        txt_sifra_grada = (TextView) view.findViewById(R.id.sifra_grada);
+        txt_tip_prodavnice = (TextView) view.findViewById(R.id.tip_prodavnice);
+        txt_tip_vlasnistva = (TextView) view.findViewById(R.id.tip_vlasnistva);
+        txt_sifra_mesta_snimanja_za_svaki_proizvod = (TextView) view.findViewById(R.id.sifra_mesta_snimanja_za_svaki_proizvod);
+        txt_napomene = (TextView) view.findViewById(R.id.napomene);
+        txt_zamena_prodavnice = (TextView) view.findViewById(R.id.zamena_prodavnice);
+        txt_sifra_snimatelja = (TextView) view.findViewById(R.id.sifra_snimatelja);
         final ImageButton naziv_edit_btn = view.findViewById(R.id.button_edit1);
         final ImageButton adresa_edit_btn = view.findViewById(R.id.button_edit2);
         final ImageButton telefon_edit_btn = view.findViewById(R.id.button_edit3);
@@ -184,6 +198,13 @@ public class home_fragment extends Fragment {
                         txt_matbr.setText(p.getMaticni_broj());
                         txt_opstina.setText(p.getSifra_opstine());
                         txt_osoba_za_cene.setText(p.getIme_prezime_osobe_za_cene());
+                        txt_sifra_grada.setText(p.getSifra_grada());
+                        txt_tip_prodavnice.setText(p.getTip_prodavnice());
+                        txt_tip_vlasnistva.setText(p.getTip_vlasnistva());
+                        txt_sifra_mesta_snimanja_za_svaki_proizvod.setText(p.getSifra_mesta_snimanja_za_svaki_proizvod());
+                        txt_napomene.setText(p.getNapomene());
+                        txt_zamena_prodavnice.setText(p.getZamena_prodavnice());
+                        txt_sifra_snimatelja.setText(p.getSifra_snimatelja());
                     }
                 }
                 prodavnica = s.getText().toString();

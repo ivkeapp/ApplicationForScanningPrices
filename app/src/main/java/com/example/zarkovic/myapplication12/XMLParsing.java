@@ -80,21 +80,32 @@ public class XMLParsing {
                         if(name.equals("naziv_prodavnice")){
                             String ss = parser.nextText();
                             prodavnica.setNaziv_prodavnice(ss);
-                            Log.i("naziv parser", ss);
                         }else if(name.equalsIgnoreCase("adresa")){
                             String ss = parser.nextText();
                             prodavnica.setAdresa(ss);
-                            Log.i("adresa parser", ss);
                         }else if(name.equalsIgnoreCase("telefon")){
                             String ss = parser.nextText();
                             prodavnica.setTelefon(ss);
-                            Log.i("telefon parser", ss);
                         }else if(name.equalsIgnoreCase("napomene")){
                             prodavnica.setNapomene(parser.nextText());
                         }else if(name.equalsIgnoreCase("maticni_broj")){
                             prodavnica.setMaticni_broj(parser.nextText());
                         }else if(name.equalsIgnoreCase("sifra_opstine")){
                             prodavnica.setSifra_opstine(parser.nextText());
+                        }else if(name.equalsIgnoreCase("sifra_grada")){
+                            prodavnica.setSifra_grada(parser.nextText());
+                        }else if(name.equalsIgnoreCase("tip_prodavnice")){
+                            prodavnica.setTip_prodavnice(parser.nextText());
+                        }else if(name.equalsIgnoreCase("tip_vlasnistva")){
+                            prodavnica.setTip_vlasnistva(parser.nextText());
+                        }else if(name.equalsIgnoreCase("ime_prezime_osobe_za_cene")){
+                            prodavnica.setIme_prezime_osobe_za_cene(parser.nextText());
+                        }else if(name.equalsIgnoreCase("sifra_mesta_snimanja_za_svaki_proizvod")){
+                            prodavnica.setSifra_mesta_snimanja_za_svaki_proizvod(parser.nextText());
+                        }else if(name.equalsIgnoreCase("zamena_prodavnice")){
+                            prodavnica.setZamena_prodavnice(parser.nextText());
+                        }else if(name.equalsIgnoreCase("sifra_snimatelja")){
+                            prodavnica.setSifra_snimatelja(parser.nextText());
                         }
                     }
                     break;

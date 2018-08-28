@@ -3,10 +3,18 @@ package com.example.zarkovic.myapplication12;
 import java.util.ArrayList;
 
 public class Proizvod {
-    String id, ime_proizvoda, vrsta_proizvoda, merna_jedinica;
+    String id, ime_proizvoda, cena_proizvoda, vrsta_proizvoda, merna_jedinica;
     ArrayList<String> lista_prodavnica;
 
     public Proizvod() {
+    }
+
+    public String getCena_proizvoda() {
+        return cena_proizvoda;
+    }
+
+    public void setCena_proizvoda(String cena_proizvoda) {
+        this.cena_proizvoda = cena_proizvoda;
     }
 
     public ArrayList<String> getLista_prodavnica() {

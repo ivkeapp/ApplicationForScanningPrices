@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Unesite podatke prodavnice:"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <EditText
+        android:id="@+id/id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Identifikacioni broj"
+        android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/sifra_grada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Šifra grada"
+            android:inputType="textPersonName" />
+
+
+        <EditText
+            android:id="@+id/sifra_opstine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Šifra opštine"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/maticni_broj"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Matični broj"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/naziv_prodavnice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Naziv prodavnice"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/tip_prodavnice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Tip prodavnice"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/tip_vlasnistva"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Tip vlasništva"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/adresa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Adresa"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/telefon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Telefon"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/ime_osobe_za_cene"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Ime osobe za cene"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/sifra_mesta_snimanja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Šifra mesta snimanja za svaki proizvod"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/napomene"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Napomene"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/zamena_prodavnice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Zamenjena prodavnica?"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/sifra_snimatelja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Šifra snimatelja"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/snimi_btn"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/gradient"
+            android:text="Snimite"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

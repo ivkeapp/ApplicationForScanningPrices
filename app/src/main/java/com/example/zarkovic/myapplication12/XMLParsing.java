@@ -1,6 +1,7 @@
 package com.example.zarkovic.myapplication12;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -32,17 +33,18 @@ public class XMLParsing {
             //parser.nextTag();
 
             prodavniceLista = parseXML(parser);
-            ArrayList<String> lista = new ArrayList<String>();
+//            ArrayList<String> lista = new ArrayList<String>();
+//
+//            for(Prodavnica p:prodavniceLista){
+//                //System.out.println(p.getNaziv_prodavnice()+" "+p.getAdresa()+" "+p.getTelefon());
+//                Log.i("novan", p.getId()+" "+p.getSifra_opstine()+" "+p.getIme_prezime_osobe_za_cene()+" "+p.getSifra_grada()+" "+p.getSifra_snimatelja()+" "+p.getNaziv_prodavnice()+" "+p.getAdresa()+" "+p.getTelefon());
+//                lista.add(p.getId()+" - "+p.getNaziv_prodavnice());
+//
+//            }
 
-            for(Prodavnica p:prodavniceLista){
-                //System.out.println(p.getNaziv_prodavnice()+" "+p.getAdresa()+" "+p.getTelefon());
-                lista.add(p.getId()+" - "+p.getNaziv_prodavnice());
-
-            }
-
-            ArrayAdapter<String> ArrA = new ArrayAdapter<String>(c, R.layout.support_simple_spinner_dropdown_item, lista);
-            s.setAdapter(ArrA);
-            s.setThreshold(1);
+//            ArrayAdapter<String> ArrA = new ArrayAdapter<String>(c, R.layout.support_simple_spinner_dropdown_item, lista);
+//            s.setAdapter(ArrA);
+//            s.setThreshold(1);
 
         } catch (XmlPullParserException e) {
             e.printStackTrace();
@@ -76,14 +78,17 @@ public class XMLParsing {
                         prodavnica.setId(parser.getAttributeValue(null, "id"));
                     }else if(prodavnica != null){
                         if(name.equals("naziv_prodavnice")){
-                            prodavnica.setNaziv_prodavnice(parser.nextText());
-                        }else if(name.equals("telefon")){
-                            prodavnica.setTelefon(parser.nextText());
-                            //dodati za sve atribute
+                            String ss = parser.nextText();
+                            prodavnica.setNaziv_prodavnice(ss);
+                            Log.i("naziv parser", ss);
                         }else if(name.equalsIgnoreCase("adresa")){
-                            prodavnica.setAdresa(parser.nextText());
+                            String ss = parser.nextText();
+                            prodavnica.setAdresa(ss);
+                            Log.i("adresa parser", ss);
                         }else if(name.equalsIgnoreCase("telefon")){
-                            prodavnica.setTelefon(parser.nextText());
+                            String ss = parser.nextText();
+                            prodavnica.setTelefon(ss);
+                            Log.i("telefon parser", ss);
                         }else if(name.equalsIgnoreCase("napomene")){
                             prodavnica.setNapomene(parser.nextText());
                         }else if(name.equalsIgnoreCase("maticni_broj")){

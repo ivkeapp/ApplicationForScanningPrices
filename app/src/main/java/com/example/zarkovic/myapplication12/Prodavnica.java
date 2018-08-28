@@ -12,6 +12,23 @@ String  adresa, sifra_grada, sifra_opstine, maticni_broj, naziv_prodavnice, tip_
     public Prodavnica() {
     }
 
+    public Prodavnica(String id, String adresa, String sifra_grada, String sifra_opstine, String maticni_broj, String naziv_prodavnice, String tip_prodavnice, String tip_vlasnistva, String telefon, String ime_prezime_osobe_za_cene, String sifra_mesta_snimanja_za_svaki_proizvod, String napomene, String zamena_prodavnice, String sifra_snimatelja) {
+        this.id = id;
+        this.adresa = adresa;
+        this.sifra_grada = sifra_grada;
+        this.sifra_opstine = sifra_opstine;
+        this.maticni_broj = maticni_broj;
+        this.naziv_prodavnice = naziv_prodavnice;
+        this.tip_prodavnice = tip_prodavnice;
+        this.tip_vlasnistva = tip_vlasnistva;
+        this.telefon = telefon;
+        this.ime_prezime_osobe_za_cene = ime_prezime_osobe_za_cene;
+        this.sifra_mesta_snimanja_za_svaki_proizvod = sifra_mesta_snimanja_za_svaki_proizvod;
+        this.napomene = napomene;
+        this.zamena_prodavnice = zamena_prodavnice;
+        this.sifra_snimatelja = sifra_snimatelja;
+    }
+
     public String getId() {
         return id;
     }

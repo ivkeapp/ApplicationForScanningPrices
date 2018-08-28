@@ -23,16 +23,17 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="29dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:text="Dobrodošli"
                 android:textColor="@android:color/white"
                 android:textSize="30sp"
                 android:textStyle="bold" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="252dp"
 
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
@@ -43,21 +44,22 @@
 
             <ScrollView
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:isScrollContainer="false"
-                android:layout_alignParentBottom="true">
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:isScrollContainer="false">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp">
+                    android:layout_marginRight="10dp"
+
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
-                        android:layout_marginTop="25dp"
+                        android:layout_marginTop="15dp"
                         android:background="@drawable/round_edge_shadow">
 
                         <TextView
@@ -110,7 +112,7 @@
                             android:layout_marginLeft="15dp"
                             android:gravity="center_vertical"
                             android:text="Adresa"
-                            android:textColor="@color/lightGray2"/>
+                            android:textColor="@color/lightGray2" />
 
                         <TextView
                             android:id="@+id/txt_prodavnica4"
@@ -136,6 +138,7 @@
                             android:src="@drawable/icon_olovka" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
@@ -150,7 +153,7 @@
                             android:layout_marginLeft="15dp"
                             android:gravity="center_vertical"
                             android:text="Telefon"
-                            android:textColor="@color/lightGray2"/>
+                            android:textColor="@color/lightGray2" />
 
                         <TextView
                             android:id="@+id/txt_prodavnica5"
@@ -191,7 +194,7 @@
                             android:layout_marginLeft="15dp"
                             android:gravity="center_vertical"
                             android:text="Maticni broj"
-                            android:textColor="@color/lightGray2"/>
+                            android:textColor="@color/lightGray2" />
 
                         <TextView
                             android:id="@+id/txt_prodavnica6"
@@ -214,9 +217,10 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka"/>
+                            android:src="@drawable/icon_olovka" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
@@ -231,7 +235,7 @@
                             android:layout_marginLeft="15dp"
                             android:gravity="center_vertical"
                             android:text="Sifra opstine"
-                            android:textColor="@color/lightGray2"/>
+                            android:textColor="@color/lightGray2" />
 
                         <TextView
                             android:id="@+id/txt_prodavnica7"
@@ -272,7 +276,7 @@
                             android:layout_marginLeft="15dp"
                             android:gravity="center_vertical"
                             android:text="Osoba za cene"
-                            android:textColor="@color/lightGray2"/>
+                            android:textColor="@color/lightGray2" />
 
                         <TextView
                             android:id="@+id/txt12"
@@ -295,7 +299,7 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka"/>
+                            android:src="@drawable/icon_olovka" />
 
                     </LinearLayout>
 
@@ -303,12 +307,13 @@
             </ScrollView>
 
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="320dp"
-            android:layout_height="180dp"
+            android:layout_height="200dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="91dp"
+            android:layout_marginTop="55dp"
             android:background="@color/white">
 
             <AutoCompleteTextView
@@ -317,7 +322,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="14dp"
                 android:gravity="left"
                 android:hint="Izaberite prodavnicu"
                 android:theme="@style/AutoComplete" />
@@ -326,11 +331,32 @@
                 android:id="@+id/unos_proizvoda_btn"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+                android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="35dp"
+                android:layout_marginTop="63dp"
                 android:background="@drawable/gradient"
                 android:text="Unesite proizvode"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/unos_proizvoda_btn"
+                android:layout_centerHorizontal="true"
+                android:text="ili"
+                android:textColor="@color/lightGray2"
+                android:textSize="14dp" />
+
+            <Button
+                android:id="@+id/dodavanje_prodavnica_btn"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/gradient"
+                android:text="Dodajte prodavnicu"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 

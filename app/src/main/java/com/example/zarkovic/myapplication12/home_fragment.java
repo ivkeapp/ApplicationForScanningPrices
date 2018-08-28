@@ -41,6 +41,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.sql.BatchUpdateException;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -61,6 +62,25 @@ public class home_fragment extends Fragment {
     TextView txt_matbr = null;
     TextView txt_opstina = null;
     TextView txt_osoba_za_cene = null;
+
+    private void settingArrayAdapter(AutoCompleteTextView s){
+
+        final XMLParsing pars = new XMLParsing();
+        lista = pars.parsingXML(getActivity(), s);
+        ArrayList<String> lista2 = new ArrayList<String>();
+        ArrayAdapter<String> ArrA = new ArrayAdapter<String>(getActivity(), R.layout.support_simple_spinner_dropdown_item, lista2);
+        //ArrA.setNotifyOnChange(true);
+        s.setAdapter(ArrA);
+        s.setThreshold(1);
+
+        for(Prodavnica p:lista){
+            //System.out.println(p.getNaziv_prodavnice()+" "+p.getAdresa()+" "+p.getTelefon());
+            Log.i("novan", p.getId()+" "+p.getSifra_opstine()+" "+p.getIme_prezime_osobe_za_cene()+" "+p.getSifra_grada()+" "+p.getSifra_snimatelja()+" "+p.getNaziv_prodavnice()+" "+p.getAdresa()+" "+p.getTelefon());
+            lista2.add(p.getId()+" - "+p.getNaziv_prodavnice());
+
+        }
+
+    }
 
     private void setTxtViewsToNull(){
 
@@ -102,9 +122,9 @@ public class home_fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        UpdateProdavnice up = new UpdateProdavnice();
-        up.updateXML(getActivity(),"sifra_opstine","2","17000");
-        View view = inflater.inflate(R.layout.home_layout, container, false);
+        //UpdateProdavnice up = new UpdateProdavnice();
+        //up.updateXML(getActivity(),"sifra_opstine","2","17000");
+        final View view = inflater.inflate(R.layout.home_layout, container, false);
 
 //        try {
 //            u.onSaveTreasureClick(view);
@@ -126,8 +146,12 @@ public class home_fragment extends Fragment {
         //poziv Klase XMLParsing i potrebne metode u zamenu za donji kod u komentaru
         final AutoCompleteTextView s = (AutoCompleteTextView) view.findViewById(R.id.autoCompleteTextView);
 
+
+
         final XMLParsing pars = new XMLParsing();
         lista = pars.parsingXML(getActivity(), s);
+        settingArrayAdapter(s);
+
         txt_prod = (TextView) view.findViewById(R.id.txt_prodavnica3);
         txt_adres = (TextView) view.findViewById(R.id.txt_prodavnica4);
         txt_tel = (TextView) view.findViewById(R.id.txt_prodavnica5);
@@ -147,7 +171,8 @@ public class home_fragment extends Fragment {
         });
         s.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(final AdapterView<?> parent, final View view, final int position, long id) {
+                Log.i("listenme",parent.getItemAtPosition(position).toString());
                 System.out.println(parent.getItemAtPosition(position).toString());
                 hideKeyboard(getActivity());
                 //prikazivanje podataka o selektovanoj prodavnici
@@ -180,6 +205,9 @@ public class home_fragment extends Fragment {
                         AlertDialog.Builder alertDlg = new AlertDialog.Builder(getContext());
                         final View dlgView = getLayoutInflater().inflate(R.layout.edit_dialog, null);
                         final EditText izmena = (EditText) dlgView.findViewById(R.id.izmena_edittext);
+                        alertDlg.setView(dlgView);
+                        final AlertDialog popUpDialog = alertDlg.create();
+                        popUpDialog.show();
                         Button sacuvaj = (Button) dlgView.findViewById(R.id.sacuvaj_btn);
                         sacuvaj.setOnClickListener(new View.OnClickListener() {
 
@@ -188,14 +216,14 @@ public class home_fragment extends Fragment {
                                 String newValue = izmena.getText().toString();
                                 UpdateProdavnice up = new UpdateProdavnice();
                                 up.updateXML(getActivity(),element,id,newValue);
-                                lista = pars.parsingXML(getActivity(), s);
-                                s.setText("");
+                                settingArrayAdapter(s);
+                                s.getAdapter().getView(position, null, null).performClick();
+
+                                popUpDialog.hide();
                             }
                         });
 
-                        alertDlg.setView(dlgView);
-                        AlertDialog popUpDialog = alertDlg.create();
-                        popUpDialog.show();
+
                     }
                 });
 
@@ -219,9 +247,11 @@ public class home_fragment extends Fragment {
                                 UpdateProdavnice up = new UpdateProdavnice();
                                 up.updateXML(getActivity(),element,id,newValue);
                                 lista = pars.parsingXML(getActivity(), s);
-                                s.setText("");
+                                String string = s.getText().toString();
+                                //s.getAdapter().getView(position, null, parent).performClick();
+                                s.getAdapter().getView(position, s.getAdapter().getView(position, null, null), parent);
                                 popUpDialog.hide();
-                                setTxtViewsToNull();
+                                //setTxtViewsToNull();
                             }
                         });
 
@@ -238,156 +268,163 @@ public class home_fragment extends Fragment {
         unos_proizvoda_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isWifiOn()) {//pozivanje metode za proveru da li je ukljucen wifi
-                    Toast.makeText(getContext(), "Uključite Wi-Fi", Toast.LENGTH_LONG).show();
-                } else{
-                    if(isConnected()) {//provera da li nije/jeste konektovan na mrezu
-                        AlertDialog.Builder alertDlg = new AlertDialog.Builder(getContext());
-                        final View dlgView = getLayoutInflater().inflate(R.layout.login_dialog_with_network_check,
-                                null);
-                        Button login_dialog_btn = (Button) dlgView.findViewById(R.id.login_dialog_btn);
-                        login_dialog_btn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                //provera korisnickih podataka (moze se izmestiti)
-                                EditText username = (EditText) dlgView.findViewById(R.id.Korisnicko_ime);
-                                EditText password = (EditText) dlgView.findViewById(R.id.sifra);
-                                if (name.equals(username.getText().toString().trim()) &&
-                                        pass.equals(password.getText().toString().trim())) {
-                                    //msg1.setText("");
-                                    Toast.makeText(getContext(), "Uspešno ste ulogovani",
-                                            Toast.LENGTH_LONG).show();
-                                    prodavnica = s.getText().toString();
-                                    if(prodavnica.length() !=0){//ako je izabran item
-                                        for (Prodavnica p:lista){
-                                            //pronalazenje i ubacivanje objekta prodavnice koja je izabrana
-                                            if(p.getId().equalsIgnoreCase(prodavnica.substring(0,1))){
-                                                prodavnicaP = p;
-                                            }
-                                        }
-                                        Intent unosProizvoda = new Intent(getActivity(), UnosProizvoda.class);
-                                        startActivity(unosProizvoda);
-                                    }
-                                    else{Toast.makeText(getContext(), "Izaberite prodavnicu", Toast.LENGTH_LONG).show();}
-                                        Intent i = new Intent(getActivity(), UnosProizvoda.class);
-                                        startActivity(i);
-                                } else {
-                                    if (name.equals(username.getText().toString().trim()) &&
-                                            !pass.equals(password.getText().toString().trim())) {
-                                        Toast.makeText(getContext(), "Netačna lozinka",
-                                                Toast.LENGTH_LONG).show();
-                                        //ubaciti textView msg1
-                                        //msg1.setTextColor(Color.red(3));
-                                        //msg1.setText("Netacna šifra");
-                                    } else {
-                                        Toast.makeText(getContext(), "Uneli ste netačne podatke",
-                                                Toast.LENGTH_LONG).show();
-                                        //msg1.setText("Uneli ste netacne podatke");
-                                        //napisati kada su netacni podaci u textviewu
-                                    }
-                                }
-                            }
-                        });
-                        alertDlg.setView(dlgView);
-                        AlertDialog popUpDialog = alertDlg.create();
-                        popUpDialog.show();
-                    }else{
-                        AlertDialog.Builder alertDlg = new AlertDialog.Builder(getContext());
-                        final View dlgView = getLayoutInflater().inflate(R.layout.dialog_without_connection,
-                                null);
-                        Button btn_unesi = (Button) dlgView.findViewById(R.id.unos_proizvoda_offline_btn);
+//                if (!isWifiOn()) {//pozivanje metode za proveru da li je ukljucen wifi
+//                    Toast.makeText(getContext(), "Uključite Wi-Fi", Toast.LENGTH_LONG).show();
+//                } else{
+//                    if(isConnected()) {//provera da li nije/jeste konektovan na mrezu
+//                        AlertDialog.Builder alertDlg = new AlertDialog.Builder(getContext());
+//                        final View dlgView = getLayoutInflater().inflate(R.layout.login_dialog_with_network_check,
+//                                null);
+//                        Button login_dialog_btn = (Button) dlgView.findViewById(R.id.login_dialog_btn);
+//                        login_dialog_btn.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                //provera korisnickih podataka (moze se izmestiti)
+//                                EditText username = (EditText) dlgView.findViewById(R.id.Korisnicko_ime);
+//                                EditText password = (EditText) dlgView.findViewById(R.id.sifra);
+//                                if (name.equals(username.getText().toString().trim()) &&
+//                                        pass.equals(password.getText().toString().trim())) {
+//                                    //msg1.setText("");
+//                                    Toast.makeText(getContext(), "Uspešno ste ulogovani",
+//                                            Toast.LENGTH_LONG).show();
+//                                    prodavnica = s.getText().toString();
+//                                    if(prodavnica.length() !=0){//ako je izabran item
+//                                        for (Prodavnica p:lista){
+//                                            //pronalazenje i ubacivanje objekta prodavnice koja je izabrana
+//                                            if(p.getId().equalsIgnoreCase(prodavnica.substring(0,1))){
+//                                                prodavnicaP = p;
+//                                            }
+//                                        }
+//                                        Intent unosProizvoda = new Intent(getActivity(), UnosProizvoda.class);
+//                                        startActivity(unosProizvoda);
+//                                    }
+//                                    else{Toast.makeText(getContext(), "Izaberite prodavnicu", Toast.LENGTH_LONG).show();}
+//                                        Intent i = new Intent(getActivity(), UnosProizvoda.class);
+//                                        startActivity(i);
+//                                } else {
+//                                    if (name.equals(username.getText().toString().trim()) &&
+//                                            !pass.equals(password.getText().toString().trim())) {
+//                                        Toast.makeText(getContext(), "Netačna lozinka",
+//                                                Toast.LENGTH_LONG).show();
+//                                        //ubaciti textView msg1
+//                                        //msg1.setTextColor(Color.red(3));
+//                                        //msg1.setText("Netacna šifra");
+//                                    } else {
+//                                        Toast.makeText(getContext(), "Uneli ste netačne podatke",
+//                                                Toast.LENGTH_LONG).show();
+//                                        //msg1.setText("Uneli ste netacne podatke");
+//                                        //napisati kada su netacni podaci u textviewu
+//                                    }
+//                                }
+//                            }
+//                        });
+//                        alertDlg.setView(dlgView);
+//                        AlertDialog popUpDialog = alertDlg.create();
+//                        popUpDialog.show();
+//                    }else{
+//                        AlertDialog.Builder alertDlg = new AlertDialog.Builder(getContext());
+//                        final View dlgView = getLayoutInflater().inflate(R.layout.dialog_without_connection,
+//                                null);
+//                        Button btn_unesi = (Button) dlgView.findViewById(R.id.unos_proizvoda_offline_btn);
+//
+//                        btn_unesi.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//
+//                                prodavnica = s.getText().toString();//uzimanje vrednosti itema iz AutoCompleteTextView-a
+//                                Log.i("prodza", prodavnica.length()+prodavnica);//stampa za proveru
+//                                if(prodavnica.length() !=0){//ako je izabran item
+//                                for (Prodavnica p:lista){
+//                                    //pronalazenje i ubacivanje objekta prodavnice koja je izabrana
+//                                    if(p.getId().equalsIgnoreCase(prodavnica.substring(0,1))){
+//                                       prodavnicaP = p;
+//                                    }
+//                                }
+//                                Intent unosProizvoda = new Intent(getActivity(), UnosProizvoda.class);
+//                                startActivity(unosProizvoda);
+//                                }
+//                                else{Toast.makeText(getContext(), "Izaberite prodavnicu", Toast.LENGTH_LONG).show();}
+//                            }
+//                        });
+//                        alertDlg.setView(dlgView);
+//                        AlertDialog popUpDialog = alertDlg.create();
+//                        popUpDialog.show();
+//                    }
+            //}
 
-                        btn_unesi.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                                prodavnica = s.getText().toString();//uzimanje vrednosti itema iz AutoCompleteTextView-a
-                                Log.i("prodza", prodavnica.length()+prodavnica);//stampa za proveru
-                                if(prodavnica.length() !=0){//ako je izabran item
-                                for (Prodavnica p:lista){
-                                    //pronalazenje i ubacivanje objekta prodavnice koja je izabrana
-                                    if(p.getId().equalsIgnoreCase(prodavnica.substring(0,1))){
-                                       prodavnicaP = p;
-                                    }
-                                }
-                                Intent unosProizvoda = new Intent(getActivity(), UnosProizvoda.class);
-                                startActivity(unosProizvoda);
-                                }
-                                else{Toast.makeText(getContext(), "Izaberite prodavnicu", Toast.LENGTH_LONG).show();}
-                            }
-                        });
-                        alertDlg.setView(dlgView);
-                        AlertDialog popUpDialog = alertDlg.create();
-                        popUpDialog.show();
-                    }
-            }
+                Intent unosProizvoda = new Intent(getActivity(), UnosProizvoda.class);
+                startActivity(unosProizvoda);
             }
         });
 
+        Button dodavanjeProdavnice = (Button) view.findViewById(R.id.dodavanje_prodavnica_btn);
+        dodavanjeProdavnice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-//        try {
-//
-//            Spinner s = (Spinner) view.findViewById(R.id.spinner2);
-//            XmlPullParser parser =this.getResources().getXml(R.xml.baza);
-//
-//            ArrayList<Prodavnica> prodavniceLista = parseXML(parser);
-//            ArrayList<String> lista = new ArrayList<String>();
-//
-//            for(Prodavnica p:prodavniceLista){
-//                //dodati za sve atribute
-//                lista.add(p.getAdresa());
-//            }
-//
-//            ArrayAdapter<String> ArrA = new ArrayAdapter<String>(getContext(), R.layout.support_simple_spinner_dropdown_item, lista);
-//            s.setAdapter(ArrA);
-//
-//        } catch (XmlPullParserException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+                final AlertDialog.Builder alertDlg = new AlertDialog.Builder(getContext());
+                final View dlgView = getLayoutInflater().inflate(R.layout.dodavanje_prodavnice_dialog,
+                        null);
+                alertDlg.setView(dlgView);
+                final AlertDialog popUpDialog = alertDlg.create();
+                popUpDialog.show();
+
+                final EditText id = (EditText) dlgView.findViewById(R.id.id);
+                final EditText sifraGrada = (EditText) dlgView.findViewById(R.id.sifra_grada);
+                final EditText sifraOpst = (EditText) dlgView.findViewById(R.id.sifra_opstine);
+                final EditText matBr = (EditText) dlgView.findViewById(R.id.maticni_broj);
+                final EditText nazivProd = (EditText) dlgView.findViewById(R.id.naziv_prodavnice);
+                final EditText tipProd = (EditText) dlgView.findViewById(R.id.tip_prodavnice);
+                final EditText tipVlasnistva = (EditText) dlgView.findViewById(R.id.tip_vlasnistva);
+                final EditText adresa = (EditText) dlgView.findViewById(R.id.adresa);
+                final EditText tel = (EditText) dlgView.findViewById(R.id.telefon);
+                final EditText imePrezimeOsobeZaCene = (EditText) dlgView.findViewById(R.id.ime_osobe_za_cene);
+                final EditText sifraMestaSnimanjaZaSvakiProizvod = (EditText) dlgView.findViewById(R.id.sifra_mesta_snimanja);
+                final EditText napomene = (EditText) dlgView.findViewById(R.id.napomene);
+                final EditText zamenaProd = (EditText) dlgView.findViewById(R.id.zamena_prodavnice);
+                final EditText sifraSnimatelja = (EditText) dlgView.findViewById(R.id.sifra_snimatelja);
+
+                Button snimiBtn = (Button) dlgView.findViewById(R.id.snimi_btn);
+                snimiBtn.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        Prodavnica newProd = new Prodavnica(id.getText().toString(),
+                                adresa.getText().toString(),
+                                sifraGrada.getText().toString(),
+                                sifraOpst.getText().toString(),
+                                matBr.getText().toString(),
+                                nazivProd.getText().toString(),
+                                tipProd.getText().toString(),
+                                tipVlasnistva.getText().toString(),
+                                tel.getText().toString(),
+                                imePrezimeOsobeZaCene.getText().toString(),
+                                sifraMestaSnimanjaZaSvakiProizvod.getText().toString(),
+                                napomene.getText().toString(),
+                                zamenaProd.getText().toString(),
+                                sifraSnimatelja.getText().toString());
+
+                        Log.i("novan1", tipVlasnistva.getText().toString()+
+                                adresa.getText().toString()+
+                                tel.getText().toString()+
+                                imePrezimeOsobeZaCene.getText().toString()+
+                                sifraMestaSnimanjaZaSvakiProizvod.getText().toString()+
+                                napomene.getText().toString()+
+                                zamenaProd.getText().toString()+
+                                sifraSnimatelja.getText().toString() );
+                                DodavanjeProdavnice dp = new DodavanjeProdavnice();
+                                dp.addProdavnica(getContext(), newProd);
+                                Toast.makeText(getContext(), "Uspesno dodata prodavnica", Toast.LENGTH_LONG).show();
+                                //lista = pars.parsingXML(getActivity(), s);
+                                popUpDialog.hide();
+
+                    }
+
+                });
+
+            }
+        });
 
         return view;
     }
-
-//    private ArrayList<Prodavnica> parseXML (XmlPullParser parser) throws XmlPullParserException, IOException {
-//
-//        ArrayList<Prodavnica> prodavniceLista = null;
-//        int eventType = parser.getEventType();
-//        Prodavnica prodavnica = null;
-//
-//        while(eventType != XmlPullParser.END_DOCUMENT){
-//
-//            String name;
-//            switch (eventType){
-//                case XmlPullParser.START_DOCUMENT:
-//                    prodavniceLista = new ArrayList<Prodavnica>();
-//                    break;
-//                case XmlPullParser.START_TAG:
-//                    name = parser.getName();
-//                    System.out.println(name);
-//                    if(name.equals("Prodavnica")){
-//                        prodavnica = new Prodavnica();
-//                        prodavnica.setId(parser.getAttributeValue(null, "id"));
-//                    }else if(prodavnica != null){
-//                        if(name.equals("adresa")){
-//                            prodavnica.setAdresa(parser.nextText());
-//                        }else if(name.equals("broj")){
-//                            prodavnica.setBroj(parser.nextText());
-//                        }
-//
-//                    }
-//                    break;
-//                case XmlPullParser.END_TAG:
-//                    name = parser.getName();
-//                    if(name.equalsIgnoreCase("prodavnica")&& prodavnica !=null){
-//                        prodavniceLista.add(prodavnica);
-//                    }
-//            }
-//            eventType = parser.next();
-//        }
-//        return prodavniceLista;
-//    }
-
-
 }

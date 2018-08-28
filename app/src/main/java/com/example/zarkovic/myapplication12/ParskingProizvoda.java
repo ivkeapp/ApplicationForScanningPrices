@@ -72,10 +72,12 @@ public class ParskingProizvoda {
                     }else if(proizvod != null){
                         if(name.equalsIgnoreCase("ime_proizvoda")){
                             proizvod.setIme_proizvoda(parser.nextText());
+                        }else if(name.equalsIgnoreCase("cena_proizvoda")){
+                            proizvod.setCena_proizvoda(parser.nextText());
                         }else if(name.equalsIgnoreCase("vrsta_proizvoda")){
                             proizvod.setVrsta_proizvoda(parser.nextText());
                         }else if(name.equalsIgnoreCase("merna_jedinica")){
-                            proizvod.setVrsta_proizvoda(parser.nextText());
+                            proizvod.setMerna_jedinica(parser.nextText());
                         }else if(name.equalsIgnoreCase("Prodavnice")){
                             //poziv metode za parsiranje liste prodavnica u kojima se prodaju dati proizvodi
                             proizvod.setLista_prodavnica(parsing(parser));

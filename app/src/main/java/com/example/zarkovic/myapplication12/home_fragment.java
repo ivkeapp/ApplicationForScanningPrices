@@ -98,6 +98,7 @@ public class home_fragment extends Fragment {
         final View dlgView = getLayoutInflater().inflate(R.layout.edit_dialog, null);
         final EditText izmena = (EditText) dlgView.findViewById(R.id.izmena_edittext);
         izmena.setText(t.getText().toString());
+        izmena.setSelection(izmena.getText().length());
         Button sacuvaj = (Button) dlgView.findViewById(R.id.sacuvaj_btn);
         alertDlg.setView(dlgView);
         final AlertDialog popUpDialog = alertDlg.create();
@@ -273,6 +274,7 @@ public class home_fragment extends Fragment {
                 final View dlgView = getLayoutInflater().inflate(R.layout.edit_dialog, null);
                 final EditText izmena = (EditText) dlgView.findViewById(R.id.izmena_edittext);
                 izmena.setText(txt_prod.getText().toString());
+                izmena.setSelection(izmena.getText().length());
                 alertDlg.setView(dlgView);
                 final AlertDialog popUpDialog = alertDlg.create();
                 popUpDialog.show();

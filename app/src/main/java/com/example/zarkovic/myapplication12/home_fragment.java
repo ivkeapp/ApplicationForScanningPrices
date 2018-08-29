@@ -90,13 +90,14 @@ public class home_fragment extends Fragment {
         }
     }
 
-    private void onEditButtonClick(final String element, final AutoCompleteTextView s){
+    private void onEditButtonClick(final String element, final AutoCompleteTextView s, TextView t){
 
         //final String element = elem;
         final String id2 = prodavnicaP.getId();
         AlertDialog.Builder alertDlg = new AlertDialog.Builder(getContext());
         final View dlgView = getLayoutInflater().inflate(R.layout.edit_dialog, null);
         final EditText izmena = (EditText) dlgView.findViewById(R.id.izmena_edittext);
+        izmena.setText(t.getText().toString());
         Button sacuvaj = (Button) dlgView.findViewById(R.id.sacuvaj_btn);
         alertDlg.setView(dlgView);
         final AlertDialog popUpDialog = alertDlg.create();
@@ -249,24 +250,7 @@ public class home_fragment extends Fragment {
                 //System.out.println(parent.getItemAtPosition(position).toString());
                 hideKeyboard(getActivity());
                 //prikazivanje podataka o selektovanoj prodavnici
-                for(Prodavnica p: lista){
-
-                    if(s.getAdapter().getItem(position).toString().substring(4).equals(p.getNaziv_prodavnice())){
-                        txt_prod.setText(p.getNaziv_prodavnice());
-                        txt_adres.setText(p.getAdresa());
-                        txt_tel.setText(p.getTelefon());
-                        txt_matbr.setText(p.getMaticni_broj());
-                        txt_opstina.setText(p.getSifra_opstine());
-                        txt_osoba_za_cene.setText(p.getIme_prezime_osobe_za_cene());
-                        txt_sifra_grada.setText(p.getSifra_grada());
-                        txt_tip_prodavnice.setText(p.getTip_prodavnice());
-                        txt_tip_vlasnistva.setText(p.getTip_vlasnistva());
-                        txt_sifra_mesta_snimanja_za_svaki_proizvod.setText(p.getSifra_mesta_snimanja_za_svaki_proizvod());
-                        txt_napomene.setText(p.getNapomene());
-                        txt_zamena_prodavnice.setText(p.getZamena_prodavnice());
-                        txt_sifra_snimatelja.setText(p.getSifra_snimatelja());
-                    }
-                }
+                izlistaj(lista, s);
                 prodavnica = s.getText().toString();
                 if(prodavnica.length() !=0) {//ako je izabran item
                     for (Prodavnica p : lista) {
@@ -288,6 +272,7 @@ public class home_fragment extends Fragment {
                 AlertDialog.Builder alertDlg = new AlertDialog.Builder(getContext());
                 final View dlgView = getLayoutInflater().inflate(R.layout.edit_dialog, null);
                 final EditText izmena = (EditText) dlgView.findViewById(R.id.izmena_edittext);
+                izmena.setText(txt_prod.getText().toString());
                 alertDlg.setView(dlgView);
                 final AlertDialog popUpDialog = alertDlg.create();
                 popUpDialog.show();
@@ -312,73 +297,73 @@ public class home_fragment extends Fragment {
         adresa_edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onEditButtonClick("adresa",s);
+                onEditButtonClick("adresa",s,txt_adres);
             }
         });
         telefon_edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onEditButtonClick("telefon", s);
+                onEditButtonClick("telefon", s, txt_tel);
             }
         });
         matbr_edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onEditButtonClick("maticni_broj", s);
+                onEditButtonClick("maticni_broj", s, txt_matbr);
             }
         });
         sifra_opstine_edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onEditButtonClick("sifra_opstine", s);
+                onEditButtonClick("sifra_opstine", s, txt_opstina);
             }
         });
         sifra_grada_edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onEditButtonClick("sifra_grada", s);
+                onEditButtonClick("sifra_grada", s, txt_sifra_grada);
             }
         });
         tip_prodavnice_edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onEditButtonClick("tip_prodavnice",s);
+                onEditButtonClick("tip_prodavnice",s, txt_tip_prodavnice);
             }
         });
         tip_vlasnistva_edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onEditButtonClick("tip_vlasnistva", s);
+                onEditButtonClick("tip_vlasnistva", s, txt_tip_vlasnistva);
             }
         });
         osoba_za_cene_edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onEditButtonClick("ime_prezime_osobe_za_cene", s);
+                onEditButtonClick("ime_prezime_osobe_za_cene", s, txt_osoba_za_cene);
             }
         });
         sifra_mesta_snimanja_za_svaki_proizvod_edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onEditButtonClick("sifra_mesta_snimanja_za_svaki_proizvod", s);
+                onEditButtonClick("sifra_mesta_snimanja_za_svaki_proizvod", s, txt_sifra_mesta_snimanja_za_svaki_proizvod);
             }
         });
         napomene_edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onEditButtonClick("napomene", s);
+                onEditButtonClick("napomene", s, txt_napomene);
             }
         });
         sifra_snimatelja_edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onEditButtonClick("sifra_snimatelja", s);
+                onEditButtonClick("sifra_snimatelja", s,txt_sifra_snimatelja);
             }
         });
         zamena_prodavnice_edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onEditButtonClick("zamena_prodavnice", s);
+                onEditButtonClick("zamena_prodavnice", s, txt_zamena_prodavnice);
             }
         });
 
@@ -471,10 +456,12 @@ public class home_fragment extends Fragment {
             //}
             if(prodavnicaP==null){
                 Toast.makeText(getContext(), "Niste odabrali prodavnicu", Toast.LENGTH_LONG).show();
-            }else{
+            }else if(s.getText().toString().equals("")){
+                Toast.makeText(getContext(), "Niste odabrali prodavnicu", Toast.LENGTH_LONG).show();
+            }else if(prodavnicaP!=null){
                 Intent unosProizvoda = new Intent(getActivity(), UnosProizvoda.class);
                 startActivity(unosProizvoda);
-}
+            }
             }
         });
 

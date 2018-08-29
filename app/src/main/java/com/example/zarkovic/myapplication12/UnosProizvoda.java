@@ -175,7 +175,7 @@ private void settingAdapter(View v, Prodavnica prodavnica, AutoCompleteTextView 
                 });
 
 
-                
+
                 final ArrayList<Prodavnica> lista_prodavnica = new ArrayList<>();
                 Button dodaj_prodavnicu_za_proizvod = (Button) dlgView.findViewById(R.id.dodaj_prodavnicu_btn);
                 dodaj_prodavnicu_za_proizvod.setOnClickListener(new View.OnClickListener() {

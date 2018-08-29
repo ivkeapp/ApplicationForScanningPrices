@@ -16,7 +16,6 @@ public class AfterLoginActivity extends AppCompatActivity {
         //potrebno setovanje Bundle da se preuzme username String i ispise u txtview-u
         TextView dobrodoslica = (TextView) findViewById(R.id.dobrodoslica2);
 
-
     }
 
     @Override

@@ -52,7 +52,7 @@ public class home_fragment extends Fragment {
     //podaci korisnika, potrebno napraviti XML bazu sa podacima
     String name = "admin";
     String pass = "admin";
-    ArrayList<Prodavnica> lista = null;
+    static ArrayList<Prodavnica> lista = null;
     String prodavnica = "";//string koji sluzi za poredjenje vrednosti selektovanog itema iz AutoCompleteTextView-a
     static Prodavnica prodavnicaP = null;//instanciranje objekta prodavnice koji se prenosi u UnosProizvoda Activity
 
@@ -70,6 +70,57 @@ public class home_fragment extends Fragment {
     TextView txt_zamena_prodavnice = null;
     TextView txt_sifra_snimatelja = null;
 
+    private void izlistaj(ArrayList<Prodavnica> lista, AutoCompleteTextView s){
+        for(Prodavnica p: lista){
+            if(s.getText().toString().contains(p.getNaziv_prodavnice())){
+                txt_prod.setText(p.getNaziv_prodavnice());
+                txt_adres.setText(p.getAdresa());
+                txt_tel.setText(p.getTelefon());
+                txt_matbr.setText(p.getMaticni_broj());
+                txt_opstina.setText(p.getSifra_opstine());
+                txt_osoba_za_cene.setText(p.getIme_prezime_osobe_za_cene());
+                txt_sifra_grada.setText(p.getSifra_grada());
+                txt_tip_prodavnice.setText(p.getTip_prodavnice());
+                txt_tip_vlasnistva.setText(p.getTip_vlasnistva());
+                txt_sifra_mesta_snimanja_za_svaki_proizvod.setText(p.getSifra_mesta_snimanja_za_svaki_proizvod());
+                txt_napomene.setText(p.getNapomene());
+                txt_zamena_prodavnice.setText(p.getZamena_prodavnice());
+                txt_sifra_snimatelja.setText(p.getSifra_snimatelja());
+            }
+        }
+    }
+
+    private void onEditButtonClick(final String element, final AutoCompleteTextView s){
+
+        //final String element = elem;
+        final String id2 = prodavnicaP.getId();
+        AlertDialog.Builder alertDlg = new AlertDialog.Builder(getContext());
+        final View dlgView = getLayoutInflater().inflate(R.layout.edit_dialog, null);
+        final EditText izmena = (EditText) dlgView.findViewById(R.id.izmena_edittext);
+        Button sacuvaj = (Button) dlgView.findViewById(R.id.sacuvaj_btn);
+        alertDlg.setView(dlgView);
+        final AlertDialog popUpDialog = alertDlg.create();
+        popUpDialog.show();
+        sacuvaj.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //jedan nacin u promeni naziv je drugi nacin
+                //treci i efikasniji nacin bi bio da se menja vrednost
+                //u Array Adapter-u samo za tu prodavnicu
+                String newValue = izmena.getText().toString();
+                UpdateProdavnice up = new UpdateProdavnice();
+                up.updateXML(getActivity(),element,id2,newValue);
+                settingArrayAdapter(s);
+                String string = s.getText().toString();
+                izlistaj(lista, s);
+                popUpDialog.hide();
+                //setTxtViewsToNull();
+            }
+        });
+
+    }
+
     private void settingArrayAdapter(AutoCompleteTextView s){
 
         final XMLParsing pars = new XMLParsing();
@@ -82,11 +133,11 @@ public class home_fragment extends Fragment {
 
         for(Prodavnica p:lista){
             //System.out.println(p.getNaziv_prodavnice()+" "+p.getAdresa()+" "+p.getTelefon());
-            Log.i("novan", p.getId()+" "+p.getSifra_opstine()+" "+p.getIme_prezime_osobe_za_cene()+" "+p.getSifra_grada()+" "+p.getSifra_snimatelja()+" "+p.getNaziv_prodavnice()+" "+p.getAdresa()+" "+p.getTelefon());
+            //Log.i("novan", p.getId()+" "+p.getSifra_opstine()+" "+p.getIme_prezime_osobe_za_cene()+" "+p.getSifra_grada()+" "+p.getSifra_snimatelja()+" "+p.getNaziv_prodavnice()+" "+p.getAdresa()+" "+p.getTelefon());
             lista2.add(p.getId()+" - "+p.getNaziv_prodavnice());
 
         }
-
+        //izlistaj(lista, s);
     }
 
     private void setTxtViewsToNull(){
@@ -153,45 +204,54 @@ public class home_fragment extends Fragment {
         //poziv Klase XMLParsing i potrebne metode u zamenu za donji kod u komentaru
         final AutoCompleteTextView s = (AutoCompleteTextView) view.findViewById(R.id.autoCompleteTextView);
 
-
-
         final XMLParsing pars = new XMLParsing();
-        lista = pars.parsingXML(getActivity(), s);
         settingArrayAdapter(s);
 
         txt_prod = (TextView) view.findViewById(R.id.txt_prodavnica3);
         txt_adres = (TextView) view.findViewById(R.id.txt_prodavnica4);
         txt_tel = (TextView) view.findViewById(R.id.txt_prodavnica5);
-        txt_matbr = (TextView) view.findViewById(R.id.txt_prodavnica7);
-        txt_opstina = (TextView) view.findViewById(R.id.txt_prodavnica6);
+        txt_matbr = (TextView) view.findViewById(R.id.txt_prodavnica6);
+        txt_opstina = (TextView) view.findViewById(R.id.txt_prodavnica7);
         txt_osoba_za_cene = (TextView) view.findViewById(R.id.txt12);
-        txt_sifra_grada = (TextView) view.findViewById(R.id.sifra_grada);
-        txt_tip_prodavnice = (TextView) view.findViewById(R.id.tip_prodavnice);
-        txt_tip_vlasnistva = (TextView) view.findViewById(R.id.tip_vlasnistva);
-        txt_sifra_mesta_snimanja_za_svaki_proizvod = (TextView) view.findViewById(R.id.sifra_mesta_snimanja_za_svaki_proizvod);
-        txt_napomene = (TextView) view.findViewById(R.id.napomene);
-        txt_zamena_prodavnice = (TextView) view.findViewById(R.id.zamena_prodavnice);
-        txt_sifra_snimatelja = (TextView) view.findViewById(R.id.sifra_snimatelja);
+        txt_sifra_grada = (TextView) view.findViewById(R.id.txt_sifra_grada);
+        txt_tip_prodavnice = (TextView) view.findViewById(R.id.txt_tip_prodavnice);
+        txt_tip_vlasnistva = (TextView) view.findViewById(R.id.txt_tip_vlasnistva);
+        txt_sifra_mesta_snimanja_za_svaki_proizvod = (TextView) view.findViewById(R.id.txt_sifra_mesta_snimanja_za_svaki_proizvod);
+        txt_napomene = (TextView) view.findViewById(R.id.txt_napomene);
+        txt_zamena_prodavnice = (TextView) view.findViewById(R.id.txt_zamena_prodavnice);
+        txt_sifra_snimatelja = (TextView) view.findViewById(R.id.txt_sifra_snimatelja);
         final ImageButton naziv_edit_btn = view.findViewById(R.id.button_edit1);
         final ImageButton adresa_edit_btn = view.findViewById(R.id.button_edit2);
         final ImageButton telefon_edit_btn = view.findViewById(R.id.button_edit3);
         final ImageButton matbr_edit_btn = view.findViewById(R.id.button_edit4);
         final ImageButton sifra_opstine_edit_btn = view.findViewById(R.id.button_edit5);
+        final ImageButton sifra_grada_edit_btn = view.findViewById(R.id.button_sifra_grada);
+        final ImageButton tip_prodavnice_edit_btn = view.findViewById(R.id.button_tip_prodavnice);
+        final ImageButton tip_vlasnistva_edit_btn = view.findViewById(R.id.button_tip_vlasnistva);
+        final ImageButton osoba_za_cene_edit_btn = view.findViewById(R.id.button_edit6);
+        final ImageButton sifra_mesta_snimanja_za_svaki_proizvod_edit_btn = view.findViewById(R.id.button_sifra_mesta_snimanja_za_svaki_proizvod);
+        final ImageButton napomene_edit_btn = view.findViewById(R.id.button_napomene);
+        final ImageButton zamena_prodavnice_edit_btn = view.findViewById(R.id.button_zamena_prodavnice);
+        final ImageButton sifra_snimatelja_edit_btn = view.findViewById(R.id.button_sifra_snimatelja);
         s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                s.showDropDown();
+                if(s.getText().toString()!=null){s.showDropDown();}
+                else if(!s.getText().toString().trim().equals("")){s.showDropDown();}
+                else{s.showDropDown();}
+
             }
         });
         s.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(final AdapterView<?> parent, final View view, final int position, long id) {
-                Log.i("listenme",parent.getItemAtPosition(position).toString());
-                System.out.println(parent.getItemAtPosition(position).toString());
+            public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
+                //Log.i("listenme",parent.getItemAtPosition(position).toString());
+                //System.out.println(parent.getItemAtPosition(position).toString());
                 hideKeyboard(getActivity());
                 //prikazivanje podataka o selektovanoj prodavnici
                 for(Prodavnica p: lista){
-                    if(parent.getItemAtPosition(position).toString().substring(4).equals(p.getNaziv_prodavnice())){
+
+                    if(s.getAdapter().getItem(position).toString().substring(4).equals(p.getNaziv_prodavnice())){
                         txt_prod.setText(p.getNaziv_prodavnice());
                         txt_adres.setText(p.getAdresa());
                         txt_tel.setText(p.getTelefon());
@@ -212,78 +272,115 @@ public class home_fragment extends Fragment {
                     for (Prodavnica p : lista) {
                         //pronalazenje i ubacivanje objekta prodavnice koja je izabrana
                         if (p.getId().equalsIgnoreCase(prodavnica.substring(0, 1))) {
-                            prodavnicaP = p;
+                            prodavnicaP = p; break;
                         }
                     }
                 }
 
 
-                naziv_edit_btn.setOnClickListener(new View.OnClickListener() {
+            }
+        });
+        naziv_edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String element = "naziv_prodavnice";
+                final String id2 = prodavnicaP.getId();
+                AlertDialog.Builder alertDlg = new AlertDialog.Builder(getContext());
+                final View dlgView = getLayoutInflater().inflate(R.layout.edit_dialog, null);
+                final EditText izmena = (EditText) dlgView.findViewById(R.id.izmena_edittext);
+                alertDlg.setView(dlgView);
+                final AlertDialog popUpDialog = alertDlg.create();
+                popUpDialog.show();
+                Button sacuvaj = (Button) dlgView.findViewById(R.id.sacuvaj_btn);
+                sacuvaj.setOnClickListener(new View.OnClickListener() {
+
                     @Override
                     public void onClick(View v) {
-                        final String element = "naziv_prodavnice";
-                        final String id = prodavnicaP.getId();
-                        AlertDialog.Builder alertDlg = new AlertDialog.Builder(getContext());
-                        final View dlgView = getLayoutInflater().inflate(R.layout.edit_dialog, null);
-                        final EditText izmena = (EditText) dlgView.findViewById(R.id.izmena_edittext);
-                        alertDlg.setView(dlgView);
-                        final AlertDialog popUpDialog = alertDlg.create();
-                        popUpDialog.show();
-                        Button sacuvaj = (Button) dlgView.findViewById(R.id.sacuvaj_btn);
-                        sacuvaj.setOnClickListener(new View.OnClickListener() {
-
-                            @Override
-                            public void onClick(View v) {
-                                String newValue = izmena.getText().toString();
-                                UpdateProdavnice up = new UpdateProdavnice();
-                                up.updateXML(getActivity(),element,id,newValue);
-                                settingArrayAdapter(s);
-                                s.getAdapter().getView(position, null, null).performClick();
-
-                                popUpDialog.hide();
-                            }
-                        });
-
-
+                        String newValue = izmena.getText().toString();
+                        UpdateProdavnice up = new UpdateProdavnice();
+                        up.updateXML(getActivity(),element,id2,newValue);
+                        settingArrayAdapter(s);
+                        s.setText(id2 + " - " +newValue, true);
+                        izlistaj(lista, s);
+                        popUpDialog.hide();
                     }
                 });
 
-                adresa_edit_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        final String element = "adresa";
-                        final String id = prodavnicaP.getId();
-                        AlertDialog.Builder alertDlg = new AlertDialog.Builder(getContext());
-                        final View dlgView = getLayoutInflater().inflate(R.layout.edit_dialog, null);
-                        final EditText izmena = (EditText) dlgView.findViewById(R.id.izmena_edittext);
-                        Button sacuvaj = (Button) dlgView.findViewById(R.id.sacuvaj_btn);
-                        alertDlg.setView(dlgView);
-                        final AlertDialog popUpDialog = alertDlg.create();
-                        popUpDialog.show();
-                        sacuvaj.setOnClickListener(new View.OnClickListener() {
-
-                            @Override
-                            public void onClick(View v) {
-                                String newValue = izmena.getText().toString();
-                                UpdateProdavnice up = new UpdateProdavnice();
-                                up.updateXML(getActivity(),element,id,newValue);
-                                lista = pars.parsingXML(getActivity(), s);
-                                String string = s.getText().toString();
-                                //s.getAdapter().getView(position, null, parent).performClick();
-                                s.getAdapter().getView(position, s.getAdapter().getView(position, null, null), parent);
-                                popUpDialog.hide();
-                                //setTxtViewsToNull();
-                            }
-                        });
-
-
-                    }
-                });
 
             }
         });
-
-
+        adresa_edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onEditButtonClick("adresa",s);
+            }
+        });
+        telefon_edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onEditButtonClick("telefon", s);
+            }
+        });
+        matbr_edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onEditButtonClick("maticni_broj", s);
+            }
+        });
+        sifra_opstine_edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onEditButtonClick("sifra_opstine", s);
+            }
+        });
+        sifra_grada_edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onEditButtonClick("sifra_grada", s);
+            }
+        });
+        tip_prodavnice_edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onEditButtonClick("tip_prodavnice",s);
+            }
+        });
+        tip_vlasnistva_edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onEditButtonClick("tip_vlasnistva", s);
+            }
+        });
+        osoba_za_cene_edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onEditButtonClick("ime_prezime_osobe_za_cene", s);
+            }
+        });
+        sifra_mesta_snimanja_za_svaki_proizvod_edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onEditButtonClick("sifra_mesta_snimanja_za_svaki_proizvod", s);
+            }
+        });
+        napomene_edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onEditButtonClick("napomene", s);
+            }
+        });
+        sifra_snimatelja_edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onEditButtonClick("sifra_snimatelja", s);
+            }
+        });
+        zamena_prodavnice_edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onEditButtonClick("zamena_prodavnice", s);
+            }
+        });
 
         Button unos_proizvoda_btn = (Button) view.findViewById(R.id.unos_proizvoda_btn);
         unos_proizvoda_btn.setOnClickListener(new View.OnClickListener() {
@@ -372,9 +469,12 @@ public class home_fragment extends Fragment {
 //                        popUpDialog.show();
 //                    }
             //}
-
+            if(prodavnicaP==null){
+                Toast.makeText(getContext(), "Niste odabrali prodavnicu", Toast.LENGTH_LONG).show();
+            }else{
                 Intent unosProizvoda = new Intent(getActivity(), UnosProizvoda.class);
                 startActivity(unosProizvoda);
+}
             }
         });
 
@@ -425,18 +525,21 @@ public class home_fragment extends Fragment {
                                 zamenaProd.getText().toString(),
                                 sifraSnimatelja.getText().toString());
 
-                        Log.i("novan1", tipVlasnistva.getText().toString()+
-                                adresa.getText().toString()+
-                                tel.getText().toString()+
-                                imePrezimeOsobeZaCene.getText().toString()+
-                                sifraMestaSnimanjaZaSvakiProizvod.getText().toString()+
-                                napomene.getText().toString()+
-                                zamenaProd.getText().toString()+
-                                sifraSnimatelja.getText().toString() );
+//                        Log.i("novan1", tipVlasnistva.getText().toString()+
+//                                adresa.getText().toString()+
+//                                tel.getText().toString()+
+//                                imePrezimeOsobeZaCene.getText().toString()+
+//                                sifraMestaSnimanjaZaSvakiProizvod.getText().toString()+
+//                                napomene.getText().toString()+
+//                                zamenaProd.getText().toString()+
+//                                sifraSnimatelja.getText().toString() );
                                 DodavanjeProdavnice dp = new DodavanjeProdavnice();
                                 dp.addProdavnica(getContext(), newProd);
                                 Toast.makeText(getContext(), "Uspesno dodata prodavnica", Toast.LENGTH_LONG).show();
                                 //lista = pars.parsingXML(getActivity(), s);
+                        s.setText(newProd.getId()+" - "+newProd.getNaziv_prodavnice());
+                        settingArrayAdapter(s);
+                        izlistaj(lista, s);
                                 popUpDialog.hide();
 
                     }

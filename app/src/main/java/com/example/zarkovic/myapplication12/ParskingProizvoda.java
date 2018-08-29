@@ -29,7 +29,6 @@ public class ParskingProizvoda {
             parser.setInput(fis, null);
 
             proizvodiLista = parseXML(parser);
-            ArrayList<String> lista = new ArrayList<String>();
 //      instanciranje AutoCompleteTextView-a kroz metodu parsiranja (instancirano u home_fragmentu)
 //            for(Proizvod p:proizvodiLista){
 //                //System.out.println(p.getNaziv_prodavnice()+" "+p.getAdresa()+" "+p.getTelefon());

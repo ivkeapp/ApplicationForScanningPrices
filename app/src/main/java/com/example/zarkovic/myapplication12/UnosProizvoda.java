@@ -2,6 +2,7 @@ package com.example.zarkovic.myapplication12;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,9 +11,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -28,6 +32,12 @@ import java.util.ArrayList;
 
 
 public class UnosProizvoda extends AppCompatActivity {
+    ArrayList<Proizvod> lista = null;
+     TextView txt_ime = null;
+     TextView txt_cena = null;
+     TextView txt_vrsta = null;
+     TextView txt_mernajedinica = null;
+     TextView txt_id = null;
 
     public static void hideKeyboard(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -40,6 +50,40 @@ public class UnosProizvoda extends AppCompatActivity {
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
+private void settingAdapter(View v, Prodavnica prodavnica, AutoCompleteTextView s){
+
+    ParskingProizvoda pars = new ParskingProizvoda();
+
+    lista = pars.parsingXML(v.getContext().getApplicationContext());
+    ArrayList<String> lista2 = new ArrayList<String>();
+
+    //dodavanje string sa podacima o nazivu proizvoda i o identifikacionom broju
+    for (Proizvod p : lista) {
+        for (String s2 : p.getLista_prodavnica()) {
+            if (prodavnica.getId().equalsIgnoreCase(s2)) {
+                lista2.add(p.getId() + " - " + p.getIme_proizvoda());
+            }
+        }
+    }
+
+    //final AutoCompleteTextView s = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTxt);
+    ArrayAdapter<String> ArrA = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, lista2);
+    s.setAdapter(ArrA);
+    s.setThreshold(1);
+
+}
+
+    private void izlistaj(ArrayList<Proizvod> lista, AutoCompleteTextView s){
+        for(Proizvod p: lista){
+            if(s.getText().toString().contains(p.getIme_proizvoda())){
+                txt_id.setText(p.getId());
+                txt_ime.setText(p.getIme_proizvoda());
+                txt_mernajedinica.setText(p.getMerna_jedinica());
+                txt_cena.setText(p.getCena_proizvoda());
+                txt_vrsta.setText(p.getVrsta_proizvoda());
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,26 +91,12 @@ public class UnosProizvoda extends AppCompatActivity {
         setContentView(R.layout.activity_unos_proizvoda);
 
         final View v = findViewById(R.id.unos_proizvoda_layout);
-        Prodavnica prodavnica = home_fragment.prodavnicaP;
-        //ArrayList<Prodavnica> lista_prodavnica = home_fragment.lista;
-        ParskingProizvoda pars = new ParskingProizvoda();
+        final Prodavnica prodavnica = home_fragment.prodavnicaP;
+
         final AutoCompleteTextView s = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTxt);
-        final ArrayList<Proizvod> lista = pars.parsingXML(v.getContext().getApplicationContext());
-        ArrayList<String> lista2 = new ArrayList<String>();
 
-        //dodavanje string sa podacima o nazivu proizvoda i o identifikacionom broju
-        for (Proizvod p : lista) {
-            for (String s2 : p.getLista_prodavnica()) {
-                if (prodavnica.getId().equalsIgnoreCase(s2)) {
-                    lista2.add(p.getId() + " - " + p.getIme_proizvoda());
-                }
-            }
-        }
 
-        //final AutoCompleteTextView s = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTxt);
-        ArrayAdapter<String> ArrA = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, lista2);
-        s.setAdapter(ArrA);
-        s.setThreshold(1);
+        settingAdapter(v, prodavnica, s);
 
         s.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,11 +107,13 @@ public class UnosProizvoda extends AppCompatActivity {
             }
         });
 
-        final TextView txt_ime = (TextView) v.findViewById(R.id.txt_prodavnica3);
-        final TextView txt_cena = (TextView) v.findViewById(R.id.txt_prodavnica4);
-        final TextView txt_vrsta = (TextView) v.findViewById(R.id.txt_prodavnica5);
-        final TextView txt_mernajedinica = (TextView) v.findViewById(R.id.txt_prodavnica6);
-        final TextView txt_id = (TextView) v.findViewById(R.id.txt_prodavnica7);
+        txt_ime = (TextView) v.findViewById(R.id.txt_prodavnica3);
+        txt_cena = (TextView) v.findViewById(R.id.txt_prodavnica4);
+        txt_vrsta = (TextView) v.findViewById(R.id.txt_prodavnica5);
+        txt_mernajedinica = (TextView) v.findViewById(R.id.txt_prodavnica6);
+        txt_id = (TextView) v.findViewById(R.id.txt_prodavnica7);
+
+        izlistaj(lista, s);
 //        final ImageButton naziv_edit_btn = v.findViewById(R.id.button_edit1);
 //        final ImageButton adresa_edit_btn = v.findViewById(R.id.button_edit2);
 //        final ImageButton telefon_edit_btn = v.findViewById(R.id.button_edit3);
@@ -100,17 +132,88 @@ public class UnosProizvoda extends AppCompatActivity {
                 System.out.println(parent.getItemAtPosition(position).toString());
                 hideKeyboard(UnosProizvoda.this);
                 //prikazivanje podataka o selektovanom proizvodu
-                for (Proizvod p : lista) {
-                    if (parent.getItemAtPosition(position).toString().substring(4).equals(p.getIme_proizvoda())) {
+                izlistaj(lista, s);
+            }
+        });
 
-                        txt_ime.setText(p.getIme_proizvoda());
-                        txt_cena.setText(p.getCena_proizvoda());
-                        txt_vrsta.setText(p.getVrsta_proizvoda());
-                        txt_mernajedinica.setText(p.getMerna_jedinica());
-                        txt_id.setText(p.getId());
+        Button dodavanje_proizvoda = (Button) findViewById(R.id.dodavanje_prodavnica_btn);
 
-                    }
+        dodavanje_proizvoda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder alertDlg = new AlertDialog.Builder(v.getContext());
+                final View dlgView = getLayoutInflater().inflate(R.layout.dodavanje_proizvoda_dialog,
+                        null);
+                alertDlg.setView(dlgView);
+                final AlertDialog popUpDialog = alertDlg.create();
+                popUpDialog.show();
+
+                final ArrayList<Prodavnica> listaProdavnicaHomeFragment = home_fragment.lista;
+                final AutoCompleteTextView s1 = (AutoCompleteTextView) dlgView.findViewById(R.id.autoCompleteTextView1);
+                ArrayList<String> lista2 = new ArrayList<String>();
+                for(Prodavnica p:listaProdavnicaHomeFragment){
+                    //System.out.println(p.getNaziv_prodavnice()+" "+p.getAdresa()+" "+p.getTelefon());
+                    //Log.i("novan1", p.getId()+" "+p.getSifra_opstine()+" "+p.getIme_prezime_osobe_za_cene()+" "+p.getSifra_grada()+" "+p.getSifra_snimatelja()+" "+p.getNaziv_prodavnice()+" "+p.getAdresa()+" "+p.getTelefon());
+                    lista2.add(p.getId()+" - "+p.getNaziv_prodavnice());
                 }
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(dlgView.getContext(), R.layout.support_simple_spinner_dropdown_item, lista2);
+                //ArrA.setNotifyOnChange(true);
+                s1.setAdapter(adapter);
+                s1.setThreshold(1);
+
+
+                final EditText id = (EditText) dlgView.findViewById(R.id.id);
+                final EditText ime_proizvoda = (EditText) dlgView.findViewById(R.id.ime_proizvoda);
+                final EditText vrsta_proizvoda = (EditText) dlgView.findViewById(R.id.vrsta_proizvoda);
+                final EditText cena_proizvoda = (EditText) dlgView.findViewById(R.id.cena_proizvoda);
+                final EditText merna_jedinica = (EditText) dlgView.findViewById(R.id.merna_jedinica);
+                s1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        s1.showDropDown();
+                    }
+                });
+
+
+                 int brojac = 0;
+                final ArrayList<Prodavnica> lista_prodavnica = new ArrayList<>();
+                Button dodaj_prodavnicu_za_proizvod = (Button) dlgView.findViewById(R.id.dodaj_prodavnicu_btn);
+                dodaj_prodavnicu_za_proizvod.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        for(Prodavnica p:listaProdavnicaHomeFragment){
+                            if(p.getId().equals(s1.getText().toString().substring(0, 1))){
+                                lista_prodavnica.add(p);
+                                brojac++;
+                                Toast.makeText(dlgView.getContext(), "Prodavnica dodata u listu", Toast.LENGTH_LONG).show();
+                                break;
+                            }
+                        }
+                    }
+                });
+
+                Button snimi = (Button) dlgView.findViewById(R.id.snimi_btn2);
+                snimi.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Proizvod proizvod = new Proizvod();
+                        proizvod.setId(id.getText().toString());
+                        proizvod.setIme_proizvoda(ime_proizvoda.getText().toString());
+                        proizvod.setVrsta_proizvoda(vrsta_proizvoda.getText().toString());
+                        proizvod.setCena_proizvoda(cena_proizvoda.getText().toString());
+                        proizvod.setMerna_jedinica(merna_jedinica.getText().toString());
+
+                        DodavanjeProizvoda dProizvoda = new DodavanjeProizvoda();
+                        dProizvoda.addProizvod(dlgView.getContext(), proizvod, lista_prodavnica);
+                        Toast.makeText(dlgView.getContext(), "Uspešno dodat proizvod", Toast.LENGTH_LONG).show();
+
+                        settingAdapter(v, prodavnica, s);
+                        s.setText(proizvod.getId()+" - "+proizvod.getIme_proizvoda());
+                        izlistaj(lista, s);
+                        popUpDialog.hide();
+                    }
+                });
             }
         });
 

@@ -175,7 +175,7 @@ private void settingAdapter(View v, Prodavnica prodavnica, AutoCompleteTextView 
                 });
 
 
-                 int brojac = 0;
+                
                 final ArrayList<Prodavnica> lista_prodavnica = new ArrayList<>();
                 Button dodaj_prodavnicu_za_proizvod = (Button) dlgView.findViewById(R.id.dodaj_prodavnicu_btn);
                 dodaj_prodavnicu_za_proizvod.setOnClickListener(new View.OnClickListener() {
@@ -185,7 +185,7 @@ private void settingAdapter(View v, Prodavnica prodavnica, AutoCompleteTextView 
                         for(Prodavnica p:listaProdavnicaHomeFragment){
                             if(p.getId().equals(s1.getText().toString().substring(0, 1))){
                                 lista_prodavnica.add(p);
-                                brojac++;
+
                                 Toast.makeText(dlgView.getContext(), "Prodavnica dodata u listu", Toast.LENGTH_LONG).show();
                                 break;
                             }

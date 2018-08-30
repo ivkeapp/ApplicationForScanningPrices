@@ -1,8 +1,10 @@
 package com.example.zarkovic.myapplication12;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
@@ -24,6 +26,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -86,6 +89,7 @@ public class home_fragment extends Fragment {
                 txt_napomene.setText(p.getNapomene());
                 txt_zamena_prodavnice.setText(p.getZamena_prodavnice());
                 txt_sifra_snimatelja.setText(p.getSifra_snimatelja());
+                break;
             }
         }
     }
@@ -184,8 +188,16 @@ public class home_fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //UpdateProdavnice up = new UpdateProdavnice();
         //up.updateXML(getActivity(),"sifra_opstine","2","17000");
-        final View view = inflater.inflate(R.layout.home_layout, container, false);
+        final View v = inflater.inflate(R.layout.home_layout, container, false);
 
+        final LinearLayout myLayout = (LinearLayout) v.findViewById(R.id.showhide_layout);
+        myLayout.setVisibility(View.GONE);
+final View animatedView = (View) v.findViewById(R.id.layout_for_animation);
+        ObjectAnimator animation = ObjectAnimator.ofFloat(animatedView, "translationY", 200f);
+        animation.setDuration(400);
+        animation.start();
+
+        final TextView txt_dobrodosli = (TextView) v.findViewById(R.id.txt_dobrodosli);
 //        try {
 //            u.onSaveTreasureClick(view);
 //        } catch (FileNotFoundException e) {
@@ -204,37 +216,37 @@ public class home_fragment extends Fragment {
 //            }
 //        });
         //poziv Klase XMLParsing i potrebne metode u zamenu za donji kod u komentaru
-        final AutoCompleteTextView s = (AutoCompleteTextView) view.findViewById(R.id.autoCompleteTextView);
+        final AutoCompleteTextView s = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTextView);
 
         final XMLParsing pars = new XMLParsing();
         settingArrayAdapter(s);
 
-        txt_prod = (TextView) view.findViewById(R.id.txt_prodavnica3);
-        txt_adres = (TextView) view.findViewById(R.id.txt_prodavnica4);
-        txt_tel = (TextView) view.findViewById(R.id.txt_prodavnica5);
-        txt_matbr = (TextView) view.findViewById(R.id.txt_prodavnica6);
-        txt_opstina = (TextView) view.findViewById(R.id.txt_prodavnica7);
-        txt_osoba_za_cene = (TextView) view.findViewById(R.id.txt12);
-        txt_sifra_grada = (TextView) view.findViewById(R.id.txt_sifra_grada);
-        txt_tip_prodavnice = (TextView) view.findViewById(R.id.txt_tip_prodavnice);
-        txt_tip_vlasnistva = (TextView) view.findViewById(R.id.txt_tip_vlasnistva);
-        txt_sifra_mesta_snimanja_za_svaki_proizvod = (TextView) view.findViewById(R.id.txt_sifra_mesta_snimanja_za_svaki_proizvod);
-        txt_napomene = (TextView) view.findViewById(R.id.txt_napomene);
-        txt_zamena_prodavnice = (TextView) view.findViewById(R.id.txt_zamena_prodavnice);
-        txt_sifra_snimatelja = (TextView) view.findViewById(R.id.txt_sifra_snimatelja);
-        final ImageButton naziv_edit_btn = view.findViewById(R.id.button_edit1);
-        final ImageButton adresa_edit_btn = view.findViewById(R.id.button_edit2);
-        final ImageButton telefon_edit_btn = view.findViewById(R.id.button_edit3);
-        final ImageButton matbr_edit_btn = view.findViewById(R.id.button_edit4);
-        final ImageButton sifra_opstine_edit_btn = view.findViewById(R.id.button_edit5);
-        final ImageButton sifra_grada_edit_btn = view.findViewById(R.id.button_sifra_grada);
-        final ImageButton tip_prodavnice_edit_btn = view.findViewById(R.id.button_tip_prodavnice);
-        final ImageButton tip_vlasnistva_edit_btn = view.findViewById(R.id.button_tip_vlasnistva);
-        final ImageButton osoba_za_cene_edit_btn = view.findViewById(R.id.button_edit6);
-        final ImageButton sifra_mesta_snimanja_za_svaki_proizvod_edit_btn = view.findViewById(R.id.button_sifra_mesta_snimanja_za_svaki_proizvod);
-        final ImageButton napomene_edit_btn = view.findViewById(R.id.button_napomene);
-        final ImageButton zamena_prodavnice_edit_btn = view.findViewById(R.id.button_zamena_prodavnice);
-        final ImageButton sifra_snimatelja_edit_btn = view.findViewById(R.id.button_sifra_snimatelja);
+        txt_prod = (TextView) v.findViewById(R.id.txt_prodavnica3);
+        txt_adres = (TextView) v.findViewById(R.id.txt_prodavnica4);
+        txt_tel = (TextView) v.findViewById(R.id.txt_prodavnica5);
+        txt_matbr = (TextView) v.findViewById(R.id.txt_prodavnica6);
+        txt_opstina = (TextView) v.findViewById(R.id.txt_prodavnica7);
+        txt_osoba_za_cene = (TextView) v.findViewById(R.id.txt12);
+        txt_sifra_grada = (TextView) v.findViewById(R.id.txt_sifra_grada);
+        txt_tip_prodavnice = (TextView) v.findViewById(R.id.txt_tip_prodavnice);
+        txt_tip_vlasnistva = (TextView) v.findViewById(R.id.txt_tip_vlasnistva);
+        txt_sifra_mesta_snimanja_za_svaki_proizvod = (TextView) v.findViewById(R.id.txt_sifra_mesta_snimanja_za_svaki_proizvod);
+        txt_napomene = (TextView) v.findViewById(R.id.txt_napomene);
+        txt_zamena_prodavnice = (TextView) v.findViewById(R.id.txt_zamena_prodavnice);
+        txt_sifra_snimatelja = (TextView) v.findViewById(R.id.txt_sifra_snimatelja);
+        final ImageButton naziv_edit_btn = v.findViewById(R.id.button_edit1);
+        final ImageButton adresa_edit_btn = v.findViewById(R.id.button_edit2);
+        final ImageButton telefon_edit_btn = v.findViewById(R.id.button_edit3);
+        final ImageButton matbr_edit_btn = v.findViewById(R.id.button_edit4);
+        final ImageButton sifra_opstine_edit_btn = v.findViewById(R.id.button_edit5);
+        final ImageButton sifra_grada_edit_btn = v.findViewById(R.id.button_sifra_grada);
+        final ImageButton tip_prodavnice_edit_btn = v.findViewById(R.id.button_tip_prodavnice);
+        final ImageButton tip_vlasnistva_edit_btn = v.findViewById(R.id.button_tip_vlasnistva);
+        final ImageButton osoba_za_cene_edit_btn = v.findViewById(R.id.button_edit6);
+        final ImageButton sifra_mesta_snimanja_za_svaki_proizvod_edit_btn = v.findViewById(R.id.button_sifra_mesta_snimanja_za_svaki_proizvod);
+        final ImageButton napomene_edit_btn = v.findViewById(R.id.button_napomene);
+        final ImageButton zamena_prodavnice_edit_btn = v.findViewById(R.id.button_zamena_prodavnice);
+        final ImageButton sifra_snimatelja_edit_btn = v.findViewById(R.id.button_sifra_snimatelja);
         s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -247,6 +259,16 @@ public class home_fragment extends Fragment {
         s.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
+
+
+                ObjectAnimator animation = ObjectAnimator.ofFloat(animatedView, "translationY", 0f);
+                animation.setDuration(200);
+                animation.start();
+
+                myLayout.setVisibility(LinearLayout.VISIBLE);
+
+
+
                 //Log.i("listenme",parent.getItemAtPosition(position).toString());
                 //System.out.println(parent.getItemAtPosition(position).toString());
                 hideKeyboard(getActivity());
@@ -261,8 +283,6 @@ public class home_fragment extends Fragment {
                         }
                     }
                 }
-
-
             }
         });
         naziv_edit_btn.setOnClickListener(new View.OnClickListener() {
@@ -369,7 +389,7 @@ public class home_fragment extends Fragment {
             }
         });
 
-        Button unos_proizvoda_btn = (Button) view.findViewById(R.id.unos_proizvoda_btn);
+        Button unos_proizvoda_btn = (Button) v.findViewById(R.id.unos_proizvoda_btn);
         unos_proizvoda_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -467,7 +487,7 @@ public class home_fragment extends Fragment {
             }
         });
 
-        Button dodavanjeProdavnice = (Button) view.findViewById(R.id.dodavanje_prodavnica_btn);
+        Button dodavanjeProdavnice = (Button) v.findViewById(R.id.dodavanje_prodavnica_btn);
         dodavanjeProdavnice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -478,6 +498,8 @@ public class home_fragment extends Fragment {
                 alertDlg.setView(dlgView);
                 final AlertDialog popUpDialog = alertDlg.create();
                 popUpDialog.show();
+
+
 
                 final EditText id = (EditText) dlgView.findViewById(R.id.id);
                 final EditText sifraGrada = (EditText) dlgView.findViewById(R.id.sifra_grada);
@@ -538,6 +560,6 @@ public class home_fragment extends Fragment {
             }
         });
 
-        return view;
+        return v;
     }
 }

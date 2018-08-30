@@ -14,6 +14,7 @@ import android.util.Log;
 import android.util.Xml;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             cbxmlp.createXMLP(this);
             Log.i("postoji baza proizvoda","ne");
         }
-
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         final NavigationView nView = findViewById(R.id.nav_view);
         nView.setNavigationItemSelectedListener(this);
         drwLayout = (DrawerLayout) findViewById(R.id.drawer);

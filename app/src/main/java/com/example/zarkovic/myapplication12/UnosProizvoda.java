@@ -1,5 +1,6 @@
 package com.example.zarkovic.myapplication12;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
@@ -14,6 +15,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +41,8 @@ public class UnosProizvoda extends AppCompatActivity {
      TextView txt_mernajedinica = null;
      TextView txt_id = null;
 
+    Prodavnica prodavnica = null;
+
     public static void hideKeyboard(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         //Find the currently focused view, so we can grab the correct window token from it.
@@ -48,6 +52,44 @@ public class UnosProizvoda extends AppCompatActivity {
             view = new View(activity);
         }
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    private void onEditButtonSave(View v, final String element, final AutoCompleteTextView s, TextView t){
+
+
+        String id2 = null;
+
+        for(Proizvod p : lista){
+            if(s.getText().toString().contains(p.getIme_proizvoda())){
+                id2=p.getId();
+                break;
+            }
+        }
+
+        AlertDialog.Builder alertDlg = new AlertDialog.Builder(v.getContext());
+        final View dlgView = getLayoutInflater().inflate(R.layout.edit_dialog_proizvod, null);
+        final EditText izmena = (EditText) dlgView.findViewById(R.id.izmena_edittext);
+        izmena.setText(t.getText().toString());
+        izmena.setSelection(izmena.getText().length());
+        alertDlg.setView(dlgView);
+        final AlertDialog popUpDialog = alertDlg.create();
+        popUpDialog.show();
+        Button sacuvaj = (Button) dlgView.findViewById(R.id.sacuvaj_btn);
+        final String finalId = id2;
+        sacuvaj.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String newValue = izmena.getText().toString();
+                UpdateProizvoda up = new UpdateProizvoda();
+                up.updateXML(dlgView.getContext(),element, finalId,newValue);
+                settingAdapter(dlgView, prodavnica, s);
+                //s.setText(finalId + " - " +newValue, true);
+                izlistaj(lista, s);
+                popUpDialog.cancel();
+            }
+        });
+
     }
 
 private void settingAdapter(View v, Prodavnica prodavnica, AutoCompleteTextView s){
@@ -91,7 +133,15 @@ private void settingAdapter(View v, Prodavnica prodavnica, AutoCompleteTextView 
         setContentView(R.layout.activity_unos_proizvoda);
 
         final View v = findViewById(R.id.unos_proizvoda_layout);
-        final Prodavnica prodavnica = home_fragment.prodavnicaP;
+        prodavnica = home_fragment.prodavnicaP;
+
+        final LinearLayout myLayout = (LinearLayout) v.findViewById(R.id.showhide_layout);
+        myLayout.setVisibility(View.GONE);
+        final View animatedView = (View) v.findViewById(R.id.layout_for_animation);
+        ObjectAnimator animation = ObjectAnimator.ofFloat(animatedView, "translationY", 200f);
+        animation.setDuration(400);
+        animation.start();
+
 
         final AutoCompleteTextView s = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTxt);
 
@@ -114,11 +164,11 @@ private void settingAdapter(View v, Prodavnica prodavnica, AutoCompleteTextView 
         txt_id = (TextView) v.findViewById(R.id.txt_prodavnica7);
 
         izlistaj(lista, s);
-//        final ImageButton naziv_edit_btn = v.findViewById(R.id.button_edit1);
-//        final ImageButton adresa_edit_btn = v.findViewById(R.id.button_edit2);
-//        final ImageButton telefon_edit_btn = v.findViewById(R.id.button_edit3);
-//        final ImageButton matbr_edit_btn = v.findViewById(R.id.button_edit4);
-//        final ImageButton sifra_opstine_edit_btn = v.findViewById(R.id.button_edit5);
+        final ImageButton id_edit_btn = v.findViewById(R.id.button_edit5);
+        final ImageButton naziv_edit_btn = v.findViewById(R.id.button_edit1);
+        final ImageButton cena_edit_btn = v.findViewById(R.id.button_edit2);
+        final ImageButton vrsta_edit_btn = v.findViewById(R.id.button_edit3);
+        final ImageButton merna_jedinica_edit_btn = v.findViewById(R.id.button_edit4);
         s.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,11 +178,119 @@ private void settingAdapter(View v, Prodavnica prodavnica, AutoCompleteTextView 
         s.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                ObjectAnimator animation = ObjectAnimator.ofFloat(animatedView, "translationY", 0f);
+                animation.setDuration(200);
+                animation.start();
+
+                myLayout.setVisibility(LinearLayout.VISIBLE);
+
                 Log.i("listenme", parent.getItemAtPosition(position).toString());
                 System.out.println(parent.getItemAtPosition(position).toString());
                 hideKeyboard(UnosProizvoda.this);
                 //prikazivanje podataka o selektovanom proizvodu
                 izlistaj(lista, s);
+            }
+        });
+
+        naziv_edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String element = "ime_proizvoda";
+                String id2 = null;
+
+                for(Proizvod p : lista){
+                    if(s.getText().toString().contains(p.getIme_proizvoda())){
+                        id2=p.getId();
+                        break;
+                    }
+                }
+
+                AlertDialog.Builder alertDlg = new AlertDialog.Builder(v.getContext());
+                final View dlgView = getLayoutInflater().inflate(R.layout.edit_dialog_proizvod, null);
+                final EditText izmena = (EditText) dlgView.findViewById(R.id.izmena_edittext);
+                izmena.setText(txt_ime.getText().toString());
+                izmena.setSelection(izmena.getText().length());
+                alertDlg.setView(dlgView);
+                final AlertDialog popUpDialog = alertDlg.create();
+                popUpDialog.show();
+                Button sacuvaj = (Button) dlgView.findViewById(R.id.sacuvaj_btn);
+                final String finalId = id2;
+                sacuvaj.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        String newValue = izmena.getText().toString();
+                        UpdateProizvoda up = new UpdateProizvoda();
+                        up.updateXML(dlgView.getContext(),element, finalId,newValue);
+                        settingAdapter(dlgView, prodavnica, s);
+                        s.setText(finalId + " - " +newValue, true);
+                        izlistaj(lista, s);
+                        popUpDialog.cancel();
+                    }
+                });
+            }
+        });
+
+        id_edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String id2 = null;
+                String imeProizvoda = null;
+
+                for(Proizvod p : lista){
+                    if(s.getText().toString().contains(p.getIme_proizvoda())){
+                        id2=p.getId();
+                        imeProizvoda = p.getIme_proizvoda();
+                        break;
+                    }
+                }
+
+                AlertDialog.Builder alertDlg = new AlertDialog.Builder(v.getContext());
+                final View dlgView = getLayoutInflater().inflate(R.layout.edit_dialog_proizvod, null);
+                final EditText izmena = (EditText) dlgView.findViewById(R.id.izmena_edittext);
+                izmena.setText(txt_id.getText().toString());
+                izmena.setSelection(izmena.getText().length());
+                alertDlg.setView(dlgView);
+                final AlertDialog popUpDialog = alertDlg.create();
+                popUpDialog.show();
+                Button sacuvaj = (Button) dlgView.findViewById(R.id.sacuvaj_btn);
+                final String finalId = id2;
+                final String finalImeProizvoda = imeProizvoda;
+                sacuvaj.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        String newValue = izmena.getText().toString();
+                        UpdateProizvoda up = new UpdateProizvoda();
+                        up.setAtributeValue(dlgView.getContext(), finalId,newValue);
+                        settingAdapter(dlgView, prodavnica, s);
+                        s.setText(newValue + " - " + finalImeProizvoda, true);
+                        izlistaj(lista, s);
+                        popUpDialog.cancel();
+                    }
+                });
+
+            }
+        });
+
+        cena_edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onEditButtonSave(v, "cena_proizvoda", s, txt_cena);
+            }
+        });
+
+        vrsta_edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onEditButtonSave(v, "vrsta_proizvoda", s, txt_vrsta);
+            }
+        });
+
+        merna_jedinica_edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onEditButtonSave(v, "merna_jedinica", s, txt_mernajedinica);
             }
         });
 
@@ -173,8 +331,6 @@ private void settingAdapter(View v, Prodavnica prodavnica, AutoCompleteTextView 
                         s1.showDropDown();
                     }
                 });
-
-
 
                 final ArrayList<Prodavnica> lista_prodavnica = new ArrayList<>();
                 Button dodaj_prodavnicu_za_proizvod = (Button) dlgView.findViewById(R.id.dodaj_prodavnicu_btn);

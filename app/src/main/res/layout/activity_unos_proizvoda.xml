@@ -6,7 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".UnosProizvoda"
     android:id="@+id/unos_proizvoda_layout">
+
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@color/darkGray"></RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_for_animation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
@@ -14,7 +21,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="170dp"
             android:background="@color/darkGray">
 
             <TextView
@@ -25,7 +32,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="12dp"
                 android:gravity="center"
-                android:text="Dobrodošli"
+                android:text="Proizvodi"
                 android:textColor="@android:color/white"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -49,6 +56,7 @@
                 android:isScrollContainer="false">
 
                 <LinearLayout
+                    android:id="@+id/showhide_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -269,10 +277,10 @@
 
         <RelativeLayout
             android:layout_width="320dp"
-            android:layout_height="200dp"
+            android:layout_height="195dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="62dp"
             android:background="@color/white">
 
             <AutoCompleteTextView
@@ -283,7 +291,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="14dp"
                 android:gravity="left"
-                android:hint="Izaberite prodavnicu"
+                android:hint="Izaberite proizvod"
                 android:theme="@style/AutoComplete" />
 
             <Button

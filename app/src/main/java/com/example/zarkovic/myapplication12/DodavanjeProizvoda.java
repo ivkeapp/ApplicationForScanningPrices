@@ -26,7 +26,7 @@ import javax.xml.transform.stream.StreamResult;
 
 public class DodavanjeProizvoda {
 
-    public void addProizvod(Context c, Proizvod proizvod, ArrayList<Prodavnica> lista) {
+    public void addProizvod(Context c, Proizvod proizvod, String id_prodavnica) {
 
         try {
 
@@ -54,16 +54,14 @@ public class DodavanjeProizvoda {
             merna_jedinica.appendChild(document.createTextNode(proizvod.getMerna_jedinica()));
             prod.appendChild(merna_jedinica);
 
-            Element cena_proizvoda = document.createElement("cena_proizvoda");
-            cena_proizvoda.appendChild(document.createTextNode(proizvod.getCena_proizvoda()));
-            prod.appendChild(cena_proizvoda);
 
             Element Prodavnice = document.createElement("Prodavnice");
-            for(Prodavnica p:lista){
+
                 Element prodavnica = document.createElement("Prodavnica");
-                prodavnica.appendChild(document.createTextNode(p.getId()));
+                prodavnica.setAttribute("id", id_prodavnica);
+                prodavnica.appendChild(document.createTextNode(proizvod.getCena_proizvoda()));
                 Prodavnice.appendChild(prodavnica);
-            }
+
 
             prod.appendChild(Prodavnice);
 
@@ -91,4 +89,51 @@ public class DodavanjeProizvoda {
             e.printStackTrace();
         }
     }
+
+    public void addExistingProizvod (Context c, Proizvod proizvod, ArrayList<Prodavnica> lista, String id){
+
+        try {
+
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            FileInputStream fis = c.openFileInput("proizvodi.xml");
+            Document document = builder.parse(fis);
+
+            Element root = document.getDocumentElement();
+            //Element prodavnice = (Element) root.getElementsByTagName("Prodavnice").item(0);
+
+            Element prodavnice = (Element) root.getElementsByTagName("Prodavnice");
+
+            Element prodavnica = document.createElement("Prodavnica");
+            prodavnica.setAttribute("id",id);
+            prodavnica.appendChild(document.createTextNode(proizvod.getCena_proizvoda()));
+            prodavnice.appendChild(prodavnica);
+
+            root.appendChild(prodavnice);
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(document);
+            StreamResult consoleResult = new StreamResult(new File(c.getFilesDir() + "/proizvodi.xml"));
+            transformer.setOutputProperty(OutputKeys.INDENT, "no");
+            transformer.transform(source, consoleResult);
+
+            Log.i("Dodata cena", "dodano");
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 }

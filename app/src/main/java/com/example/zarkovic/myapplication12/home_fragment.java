@@ -132,10 +132,7 @@ public class home_fragment extends Fragment {
         final XMLParsing pars = new XMLParsing();
         lista = pars.parsingXML(getActivity(), s);
         ArrayList<String> lista2 = new ArrayList<String>();
-        ArrayAdapter<String> ArrA = new ArrayAdapter<String>(getActivity(), R.layout.support_simple_spinner_dropdown_item, lista2);
-        //ArrA.setNotifyOnChange(true);
-        s.setAdapter(ArrA);
-        s.setThreshold(1);
+
 
         for(Prodavnica p:lista){
             //System.out.println(p.getNaziv_prodavnice()+" "+p.getAdresa()+" "+p.getTelefon());
@@ -143,19 +140,22 @@ public class home_fragment extends Fragment {
             lista2.add(p.getId()+" - "+p.getNaziv_prodavnice());
 
         }
-        //izlistaj(lista, s);
+        ArrayAdapter<String> ArrA = new ArrayAdapter<String>(getActivity(), R.layout.support_simple_spinner_dropdown_item, lista2);
+        //ArrA.setNotifyOnChange(true);
+        s.setAdapter(ArrA);
+        s.setThreshold(1);
     }
 
-    private void setTxtViewsToNull(){
-
-        txt_prod.setText("");
-        txt_adres.setText("");
-        txt_tel.setText("");
-        txt_matbr.setText("");
-        txt_opstina.setText("");
-        txt_osoba_za_cene.setText("");
-
-    }
+//    private void setTxtViewsToNull(){
+//
+//        txt_prod.setText("");
+//        txt_adres.setText("");
+//        txt_tel.setText("");
+//        txt_matbr.setText("");
+//        txt_opstina.setText("");
+//        txt_osoba_za_cene.setText("");
+//
+//    }
 
 
     public static void hideKeyboard(Activity activity) {
@@ -192,9 +192,9 @@ public class home_fragment extends Fragment {
 
         final LinearLayout myLayout = (LinearLayout) v.findViewById(R.id.showhide_layout);
         myLayout.setVisibility(View.GONE);
-final View animatedView = (View) v.findViewById(R.id.layout_for_animation);
+        final View animatedView = (View) v.findViewById(R.id.layout_for_animation);
         ObjectAnimator animation = ObjectAnimator.ofFloat(animatedView, "translationY", 200f);
-        animation.setDuration(400);
+        animation.setDuration(200);
         animation.start();
 
         final TextView txt_dobrodosli = (TextView) v.findViewById(R.id.txt_dobrodosli);
@@ -260,7 +260,6 @@ final View animatedView = (View) v.findViewById(R.id.layout_for_animation);
             @Override
             public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
 
-
                 ObjectAnimator animation = ObjectAnimator.ofFloat(animatedView, "translationY", 0f);
                 animation.setDuration(200);
                 animation.start();
@@ -275,10 +274,12 @@ final View animatedView = (View) v.findViewById(R.id.layout_for_animation);
                 //prikazivanje podataka o selektovanoj prodavnici
                 izlistaj(lista, s);
                 prodavnica = s.getText().toString();
+                String [] sa = prodavnica.split(" -");
+                Log.i("spliter", sa[0]);
                 if(prodavnica.length() !=0) {//ako je izabran item
                     for (Prodavnica p : lista) {
                         //pronalazenje i ubacivanje objekta prodavnice koja je izabrana
-                        if (p.getId().equalsIgnoreCase(prodavnica.substring(0, 1))) {
+                        if (p.getId().equalsIgnoreCase(sa[0])) {
                             prodavnicaP = p; break;
                         }
                     }
@@ -523,18 +524,18 @@ final View animatedView = (View) v.findViewById(R.id.layout_for_animation);
                     public void onClick(View v) {
                         Prodavnica newProd = new Prodavnica(id.getText().toString(),
                                 adresa.getText().toString(),
-                                sifraGrada.getText().toString(),
-                                sifraOpst.getText().toString(),
+                                sifraGrada.getText().toString(),//tri slovna mesta
+                                sifraOpst.getText().toString(),//pet slovnih mesta
                                 matBr.getText().toString(),
                                 nazivProd.getText().toString(),
-                                tipProd.getText().toString(),
-                                tipVlasnistva.getText().toString(),
+                                tipProd.getText().toString(),//jedno slovno mesto
+                                tipVlasnistva.getText().toString(),//jedno slovno mesto
                                 tel.getText().toString(),
                                 imePrezimeOsobeZaCene.getText().toString(),
                                 sifraMestaSnimanjaZaSvakiProizvod.getText().toString(),
                                 napomene.getText().toString(),
                                 zamenaProd.getText().toString(),
-                                sifraSnimatelja.getText().toString());
+                                sifraSnimatelja.getText().toString());//jedanaest slovnih mesta
 
 //                        Log.i("novan1", tipVlasnistva.getText().toString()+
 //                                adresa.getText().toString()+

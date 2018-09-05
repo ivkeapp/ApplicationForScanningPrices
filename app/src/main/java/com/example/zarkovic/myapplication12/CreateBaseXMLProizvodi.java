@@ -33,10 +33,6 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.text( "Mleko");
             xmlSerializer.endTag("", "ime_proizvoda");
 
-            xmlSerializer.startTag("", "cena_proizvoda");
-            xmlSerializer.text( "112");
-            xmlSerializer.endTag("", "cena_proizvoda");
-
             xmlSerializer.startTag("", "vrsta_proizvoda");
             xmlSerializer.text( "mlecni proizvod");
             xmlSerializer.endTag("", "vrsta_proizvoda");
@@ -48,15 +44,18 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.startTag("", "Prodavnice");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("1");
+            xmlSerializer.attribute("", "id", "1");
+            xmlSerializer.text("112");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("2");
+            xmlSerializer.attribute("", "id", "2");
+            xmlSerializer.text("110");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("3");
+            xmlSerializer.attribute("", "id", "3");
+            xmlSerializer.text("95");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.endTag("", "Prodavnice");
@@ -70,10 +69,6 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.text( "Hleb");
             xmlSerializer.endTag("", "ime_proizvoda");
 
-            xmlSerializer.startTag("", "cena_proizvoda");
-            xmlSerializer.text( "48");
-            xmlSerializer.endTag("", "cena_proizvoda");
-
             xmlSerializer.startTag("", "vrsta_proizvoda");
             xmlSerializer.text( "pekarski proizvod");
             xmlSerializer.endTag("", "vrsta_proizvoda");
@@ -85,19 +80,23 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.startTag("", "Prodavnice");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("1");
+            xmlSerializer.attribute("", "id", "1");
+            xmlSerializer.text("48");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("2");
+            xmlSerializer.attribute("", "id", "2");
+            xmlSerializer.text("52");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("3");
+            xmlSerializer.attribute("", "id", "3");
+            xmlSerializer.text("55");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("4");
+            xmlSerializer.attribute("", "id", "4");
+            xmlSerializer.text("45");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.endTag("", "Prodavnice");
@@ -111,10 +110,6 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.text( "Suvi vrat");
             xmlSerializer.endTag("", "ime_proizvoda");
 
-            xmlSerializer.startTag("", "cena_proizvoda");
-            xmlSerializer.text( "868");
-            xmlSerializer.endTag("", "cena_proizvoda");
-
             xmlSerializer.startTag("", "vrsta_proizvoda");
             xmlSerializer.text( "mesna preradjevina");
             xmlSerializer.endTag("", "vrsta_proizvoda");
@@ -126,19 +121,23 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.startTag("", "Prodavnice");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("1");
+            xmlSerializer.attribute("", "id", "1");
+            xmlSerializer.text("950");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("3");
+            xmlSerializer.attribute("", "id", "3");
+            xmlSerializer.text("890");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("4");
+            xmlSerializer.attribute("", "id", "4");
+            xmlSerializer.text("940");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("5");
+            xmlSerializer.attribute("", "id", "5");
+            xmlSerializer.text("780");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.endTag("", "Prodavnice");
@@ -152,10 +151,6 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.text( "Toshiba 1101T Notebook");
             xmlSerializer.endTag("", "ime_proizvoda");
 
-            xmlSerializer.startTag("", "cena_proizvoda");
-            xmlSerializer.text( "64590");
-            xmlSerializer.endTag("", "cena_proizvoda");
-
             xmlSerializer.startTag("", "vrsta_proizvoda");
             xmlSerializer.text( "Laptop");
             xmlSerializer.endTag("", "vrsta_proizvoda");
@@ -167,7 +162,8 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.startTag("", "Prodavnice");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("1");
+            xmlSerializer.attribute("", "id", "1");
+            xmlSerializer.text("58900");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.endTag("", "Prodavnice");
@@ -182,10 +178,6 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.text( "Persil prasak za ves");
             xmlSerializer.endTag("", "ime_proizvoda");
 
-            xmlSerializer.startTag("", "cena_proizvoda");
-            xmlSerializer.text( "1120");
-            xmlSerializer.endTag("", "cena_proizvoda");
-
             xmlSerializer.startTag("", "vrsta_proizvoda");
             xmlSerializer.text( "Kucna hemija");
             xmlSerializer.endTag("", "vrsta_proizvoda");
@@ -197,15 +189,18 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.startTag("", "Prodavnice");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("2");
+            xmlSerializer.attribute("", "id", "2");
+            xmlSerializer.text("1120");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("3");
+            xmlSerializer.attribute("", "id", "3");
+            xmlSerializer.text("950");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("5");
+            xmlSerializer.attribute("", "id", "5");
+            xmlSerializer.text("1060");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.endTag("", "Prodavnice");
@@ -219,10 +214,6 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.text( "Topola cajna salama");
             xmlSerializer.endTag("", "ime_proizvoda");
 
-            xmlSerializer.startTag("", "cena_proizvoda");
-            xmlSerializer.text( "769");
-            xmlSerializer.endTag("", "cena_proizvoda");
-
             xmlSerializer.startTag("", "vrsta_proizvoda");
             xmlSerializer.text( "mesna preradjevina");
             xmlSerializer.endTag("", "vrsta_proizvoda");
@@ -234,19 +225,23 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.startTag("", "Prodavnice");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("1");
+            xmlSerializer.attribute("", "id", "1");
+            xmlSerializer.text("780");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("2");
+            xmlSerializer.attribute("", "id", "2");
+            xmlSerializer.text("950");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("4");
+            xmlSerializer.attribute("", "id", "4");
+            xmlSerializer.text("870");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("5");
+            xmlSerializer.attribute("", "id", "5");
+            xmlSerializer.text("821");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.endTag("", "Prodavnice");
@@ -260,10 +255,6 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.text( "Dove sapun");
             xmlSerializer.endTag("", "ime_proizvoda");
 
-            xmlSerializer.startTag("", "cena_proizvoda");
-            xmlSerializer.text( "60");
-            xmlSerializer.endTag("", "cena_proizvoda");
-
             xmlSerializer.startTag("", "vrsta_proizvoda");
             xmlSerializer.text( "kucna hemija");
             xmlSerializer.endTag("", "vrsta_proizvoda");
@@ -275,19 +266,23 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.startTag("", "Prodavnice");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("2");
+            xmlSerializer.attribute("", "id", "2");
+            xmlSerializer.text("75");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("3");
+            xmlSerializer.attribute("", "id", "3");
+            xmlSerializer.text("95");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("4");
+            xmlSerializer.attribute("", "id", "4");
+            xmlSerializer.text("65");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("5");
+            xmlSerializer.attribute("", "id", "5");
+            xmlSerializer.text("78");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.endTag("", "Prodavnice");
@@ -301,10 +296,6 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.text( "Ajax sredstvo za ciscenje plocica");
             xmlSerializer.endTag("", "ime_proizvoda");
 
-            xmlSerializer.startTag("", "cena_proizvoda");
-            xmlSerializer.text( "280");
-            xmlSerializer.endTag("", "cena_proizvoda");
-
             xmlSerializer.startTag("", "vrsta_proizvoda");
             xmlSerializer.text( "Kucna hemija");
             xmlSerializer.endTag("", "vrsta_proizvoda");
@@ -316,19 +307,23 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.startTag("", "Prodavnice");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("2");
+            xmlSerializer.attribute("", "id", "2");
+            xmlSerializer.text("270");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("3");
+            xmlSerializer.attribute("", "id", "3");
+            xmlSerializer.text("199");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("4");
+            xmlSerializer.attribute("", "id", "4");
+            xmlSerializer.text("220");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("5");
+            xmlSerializer.attribute("", "id", "5");
+            xmlSerializer.text("255");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.endTag("", "Prodavnice");
@@ -342,10 +337,6 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.text( "Durum testenina za kuvanje");
             xmlSerializer.endTag("", "ime_proizvoda");
 
-            xmlSerializer.startTag("", "cena_proizvoda");
-            xmlSerializer.text( "85");
-            xmlSerializer.endTag("", "cena_proizvoda");
-
             xmlSerializer.startTag("", "vrsta_proizvoda");
             xmlSerializer.text( "testo i testenine");
             xmlSerializer.endTag("", "vrsta_proizvoda");
@@ -357,19 +348,23 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.startTag("", "Prodavnice");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("1");
+            xmlSerializer.attribute("", "id", "1");
+            xmlSerializer.text("75");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("2");
+            xmlSerializer.attribute("", "id", "2");
+            xmlSerializer.text("91");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("4");
+            xmlSerializer.attribute("", "id", "4");
+            xmlSerializer.text("88");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("5");
+            xmlSerializer.attribute("", "id", "5");
+            xmlSerializer.text("76");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.endTag("", "Prodavnice");
@@ -383,10 +378,6 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.text( "Patelina pasteta");
             xmlSerializer.endTag("", "ime_proizvoda");
 
-            xmlSerializer.startTag("", "cena_proizvoda");
-            xmlSerializer.text( "74");
-            xmlSerializer.endTag("", "cena_proizvoda");
-
             xmlSerializer.startTag("", "vrsta_proizvoda");
             xmlSerializer.text( "mesna preradjevina");
             xmlSerializer.endTag("", "vrsta_proizvoda");
@@ -398,23 +389,28 @@ public class CreateBaseXMLProizvodi {
             xmlSerializer.startTag("", "Prodavnice");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("1");
+            xmlSerializer.attribute("", "id", "1");
+            xmlSerializer.text("75");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("2");
+            xmlSerializer.attribute("", "id", "2");
+            xmlSerializer.text("68");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("3");
+            xmlSerializer.attribute("", "id", "3");
+            xmlSerializer.text("79");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("4");
+            xmlSerializer.attribute("", "id", "4");
+            xmlSerializer.text("112");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.startTag("","Prodavnica");
-            xmlSerializer.text("5");
+            xmlSerializer.attribute("", "id", "5");
+            xmlSerializer.text("93");
             xmlSerializer.endTag("", "Prodavnica");
 
             xmlSerializer.endTag("", "Prodavnice");

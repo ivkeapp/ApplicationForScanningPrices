@@ -14,6 +14,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ParskingProizvoda {
 //metoda za instanciranje XmlPullParsera i pozivanje metode za parsiranje
@@ -77,8 +78,10 @@ public class ParskingProizvoda {
                         }else if(name.equalsIgnoreCase("merna_jedinica")){
                             proizvod.setMerna_jedinica(parser.nextText());
                         }else if(name.equalsIgnoreCase("Prodavnice")){
+                            HashMap<String, String> cene_po_prodavnicama = new HashMap<>();
                             //poziv metode za parsiranje liste prodavnica u kojima se prodaju dati proizvodi
-                            proizvod.setLista_prodavnica(parsing(parser));
+                            proizvod.setLista_prodavnica(parsing(parser, cene_po_prodavnicama));
+                            proizvod.setCene_po_prodavnicama(cene_po_prodavnicama);
                         }
                     }
                     break;
@@ -93,7 +96,12 @@ public class ParskingProizvoda {
         return proizvodLista;
     }
 
-    private ArrayList<String> parsing (XmlPullParser parser) throws XmlPullParserException, IOException {
+    private HashMap<String, String> dodajCene(HashMap<String, String> mapa){
+
+        return mapa;
+    }
+
+    private ArrayList<String> parsing (XmlPullParser parser, HashMap<String, String> mapa) throws XmlPullParserException, IOException {
         //metoda za parsiranje liste prodavnica u kojima se prodaju dati proizvodi
 
         String print = null;
@@ -101,14 +109,17 @@ public class ParskingProizvoda {
         int eventType = parser.getEventType();
         String name = "";// instanciranje na prazan String da bi usao u while petlju
         ArrayList<String> lista = new ArrayList<String>();
+
         while(eventType != XmlPullParser.END_TAG && !name.equalsIgnoreCase("prodavnice")){
             //eventType je pri ulasku u petlju XmlPullParser.start_tag, dok je getName() u prvoj iteraciji "prodavnice"
             switch (eventType){
                 case XmlPullParser.START_TAG:
                     name = parser.getName();
                     if(name.equalsIgnoreCase("Prodavnica")){
-                        print = parser.nextText();
-                        Log.i("parser", name+" dodato u listu "+print);
+                        print = parser.getAttributeValue(null, "id");
+                        //print = parser.nextText();
+                        mapa.put(print, parser.nextText());
+                        //Log.i("parser", name+" dodato u listu "+parser.nextText());
                         lista.add(print);
                     }name="";// instanciranje na prazan string da bi se nastavila petlja u prvoj iteraciji bilo
                              //bi dobro da se doradi i optimizuje

@@ -101,7 +101,9 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka" />
+                            android:padding="15dp"
+                            android:src="@drawable/icon_olovka_24dp"
+                            android:tint="@color/orange"/>
 
                     </LinearLayout>
 
@@ -142,7 +144,9 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka" />
+                            android:padding="15dp"
+                            android:src="@drawable/icon_olovka_24dp"
+                            android:tint="@color/orange"/>
 
                     </LinearLayout>
 
@@ -183,7 +187,9 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka" />
+                            android:padding="15dp"
+                            android:src="@drawable/icon_olovka_24dp"
+                            android:tint="@color/orange"/>
 
                     </LinearLayout>
 
@@ -224,7 +230,9 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka" />
+                            android:padding="15dp"
+                            android:src="@drawable/icon_olovka_24dp"
+                            android:tint="@color/orange"/>
 
                     </LinearLayout>
 
@@ -265,7 +273,9 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka" />
+                            android:padding="15dp"
+                            android:src="@drawable/icon_olovka_24dp"
+                            android:tint="@color/orange"/>
 
                     </LinearLayout>
 
@@ -306,7 +316,9 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka" />
+                            android:padding="15dp"
+                            android:src="@drawable/icon_olovka_24dp"
+                            android:tint="@color/orange"/>
 
                     </LinearLayout>
 
@@ -347,7 +359,9 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka" />
+                            android:padding="15dp"
+                            android:src="@drawable/icon_olovka_24dp"
+                            android:tint="@color/orange"/>
 
                     </LinearLayout>
 
@@ -388,7 +402,9 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka" />
+                            android:padding="15dp"
+                            android:src="@drawable/icon_olovka_24dp"
+                            android:tint="@color/orange"/>
 
                     </LinearLayout>
 
@@ -429,7 +445,9 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka" />
+                            android:padding="15dp"
+                            android:src="@drawable/icon_olovka_24dp"
+                            android:tint="@color/orange"/>
 
                     </LinearLayout>
 
@@ -470,7 +488,9 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka" />
+                            android:padding="15dp"
+                            android:src="@drawable/icon_olovka_24dp"
+                            android:tint="@color/orange"/>
 
                     </LinearLayout>
 
@@ -511,7 +531,9 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka" />
+                            android:padding="15dp"
+                            android:src="@drawable/icon_olovka_24dp"
+                            android:tint="@color/orange"/>
 
                     </LinearLayout>
 
@@ -552,7 +574,9 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka" />
+                            android:padding="15dp"
+                            android:src="@drawable/icon_olovka_24dp"
+                            android:tint="@color/orange"/>
 
                     </LinearLayout>
 
@@ -593,7 +617,9 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka" />
+                            android:padding="15dp"
+                            android:src="@drawable/icon_olovka_24dp"
+                            android:tint="@color/orange"/>
 
                     </LinearLayout>
 
@@ -632,15 +658,6 @@
                 android:text="Unesite proizvode"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/unos_proizvoda_btn"
-                android:layout_centerHorizontal="true"
-                android:text="ili"
-                android:textColor="@color/lightGray2"
-                android:textSize="14dp" />
 
             <Button
                 android:id="@+id/dodavanje_prodavnica_btn"

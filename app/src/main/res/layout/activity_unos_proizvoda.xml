@@ -32,7 +32,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="12dp"
                 android:gravity="center"
-                android:text="Proizvodi"
                 android:textColor="@android:color/white"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -101,7 +100,9 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka" />
+                            android:padding="15dp"
+                            android:src="@drawable/icon_olovka_24dp"
+                            android:tint="@color/orange"/> />
 
                     </LinearLayout>
 
@@ -143,7 +144,9 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka" />
+                            android:padding="15dp"
+                            android:src="@drawable/icon_olovka_24dp"
+                            android:tint="@color/orange"/> />
 
                     </LinearLayout>
 
@@ -184,7 +187,9 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka" />
+                            android:padding="15dp"
+                            android:src="@drawable/icon_olovka_24dp"
+                            android:tint="@color/orange"/> />
 
                     </LinearLayout>
 
@@ -225,7 +230,9 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka" />
+                            android:padding="15dp"
+                            android:src="@drawable/icon_olovka_24dp"
+                            android:tint="@color/orange"/> />
 
                     </LinearLayout>
 
@@ -266,7 +273,9 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/icon_olovka" />
+                            android:padding="15dp"
+                            android:src="@drawable/icon_olovka_24dp"
+                            android:tint="@color/orange"/> />
 
                     </LinearLayout>
 
@@ -302,7 +311,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="63dp"
                 android:background="@drawable/gradient"
-
                 android:text="Skeniraj barkod"
                 android:textColor="@color/white"
                 android:textStyle="bold" />

@@ -12,7 +12,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Unesite podatke proizvoda:"
+                android:text="@string/unesite_podatke_proizvoda"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -73,27 +73,6 @@
                 android:ems="10"
                 android:hint="Merna jedinica"
                 android:inputType="textPersonName" />
-
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteTextView1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Pretražite prodavnice"
-                android:theme="@style/AutoComplete"/>
-
-            <Button
-                android:id="@+id/dodaj_prodavnicu_btn"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/gradient"
-                android:text="Dodajte prodavnicu"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/snimi_btn2"

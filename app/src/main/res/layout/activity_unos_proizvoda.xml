@@ -275,7 +275,7 @@
                             android:scaleType="fitCenter"
                             android:padding="15dp"
                             android:src="@drawable/icon_olovka_24dp"
-                            android:tint="@color/orange"/> />
+                            android:tint="@color/orange"/>
 
                     </LinearLayout>
 
@@ -310,10 +310,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="63dp"
-                android:background="@drawable/drawable"
+                android:background="@drawable/gradient"
                 android:text="Skeniraj barkod"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
+
 
             <Button
                 android:id="@+id/dodavanje_prodavnica_btn"
@@ -322,7 +323,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/gradient"
+                android:background="@drawable/drawable"
                 android:text="Dodajte novi proizvod"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold" />

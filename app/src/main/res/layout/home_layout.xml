@@ -656,7 +656,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="63dp"
-                android:background="@drawable/drawable"
+                android:background="@drawable/gradient"
                 android:text="Unesite proizvode"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
@@ -668,7 +668,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/gradient"
+                android:background="@drawable/drawable"
                 android:text="Dodajte prodavnicu"
                 android:textColor="@color/orange"
                 android:textStyle="bold" />

@@ -486,18 +486,7 @@ private void settingAdapter(View v, Prodavnica prodavnica, AutoCompleteTextView 
                         null);
 
 
-                final ArrayList<Prodavnica> listaProdavnicaHomeFragment = home_fragment.lista;
-                final AutoCompleteTextView s1 = (AutoCompleteTextView) dlgView.findViewById(R.id.autoCompleteTextView1);
-                ArrayList<String> lista2 = new ArrayList<String>();
-                for(Prodavnica p:listaProdavnicaHomeFragment){
-                    //System.out.println(p.getNaziv_prodavnice()+" "+p.getAdresa()+" "+p.getTelefon());
-                    //Log.i("novan1", p.getId()+" "+p.getSifra_opstine()+" "+p.getIme_prezime_osobe_za_cene()+" "+p.getSifra_grada()+" "+p.getSifra_snimatelja()+" "+p.getNaziv_prodavnice()+" "+p.getAdresa()+" "+p.getTelefon());
-                    lista2.add(p.getId()+" - "+p.getNaziv_prodavnice());
-                }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(dlgView.getContext(), R.layout.support_simple_spinner_dropdown_item, lista2);
-                //ArrA.setNotifyOnChange(true);
-                s1.setAdapter(adapter);
-                s1.setThreshold(1);
+
 
 
                 final EditText id = (EditText) dlgView.findViewById(R.id.id);
@@ -505,33 +494,10 @@ private void settingAdapter(View v, Prodavnica prodavnica, AutoCompleteTextView 
                 final EditText vrsta_proizvoda = (EditText) dlgView.findViewById(R.id.vrsta_proizvoda);
                 final EditText cena_proizvoda = (EditText) dlgView.findViewById(R.id.cena_proizvoda);
                 final EditText merna_jedinica = (EditText) dlgView.findViewById(R.id.merna_jedinica);
-                s1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        s1.showDropDown();
-                    }
-                });
 
-                final ArrayList<Prodavnica> lista_prodavnica = new ArrayList<>();
-                Button dodaj_prodavnicu_za_proizvod = (Button) dlgView.findViewById(R.id.dodaj_prodavnicu_btn);
                 alertDlg.setView(dlgView);
                 final AlertDialog popUpDialog = alertDlg.create();
                 popUpDialog.show();
-                dodaj_prodavnicu_za_proizvod.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        lista_prodavnica.add(home_fragment.prodavnicaP);
-                        for(Prodavnica p:listaProdavnicaHomeFragment){
-                            if(p.getId().equals(s1.getText().toString().substring(0, 1))){
-                                lista_prodavnica.add(p);
-
-                                Toast.makeText(dlgView.getContext(), "Prodavnica dodata u listu", Toast.LENGTH_LONG).show();
-                                break;
-                            }
-                        }
-                    }
-                });
 
                 Button snimi = (Button) dlgView.findViewById(R.id.snimi_btn2);
                 snimi.setOnClickListener(new View.OnClickListener() {
@@ -543,11 +509,7 @@ private void settingAdapter(View v, Prodavnica prodavnica, AutoCompleteTextView 
                         proizvod.setVrsta_proizvoda(vrsta_proizvoda.getText().toString());
                         proizvod.setCena_proizvoda(cena_proizvoda.getText().toString());
                         proizvod.setMerna_jedinica(merna_jedinica.getText().toString());
-                        ArrayList<String> listaProdavnicaString =  new ArrayList<>();
-                        for(Prodavnica p : lista_prodavnica){
-                            listaProdavnicaString.add(p.getId());
-                        }
-                        proizvod.setLista_prodavnica(listaProdavnicaString);
+
 
                         DodavanjeProizvoda dProizvoda = new DodavanjeProizvoda();
                         dProizvoda.addProizvod(dlgView.getContext(), proizvod, home_fragment.prodavnicaP.getId());

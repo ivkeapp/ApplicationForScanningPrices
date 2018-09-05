@@ -310,19 +310,10 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="63dp"
-                android:background="@drawable/gradient"
+                android:background="@drawable/drawable"
                 android:text="Skeniraj barkod"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/unos_proizvoda_btn"
-                android:layout_centerHorizontal="true"
-                android:text="ili"
-                android:textColor="@color/lightGray2"
-                android:textSize="14dp" />
 
             <Button
                 android:id="@+id/dodavanje_prodavnica_btn"
@@ -333,7 +324,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/gradient"
                 android:text="Dodajte novi proizvod"
-                android:textColor="@color/white"
+                android:textColor="@color/colorPrimary"
                 android:textStyle="bold" />
 
         </RelativeLayout>
